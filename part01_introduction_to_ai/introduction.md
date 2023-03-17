@@ -175,7 +175,140 @@ Let's first scrutinize the following definitions that have been proposed earlier
 - Also come up with **your own, improved definition** that solves some of the problems that you have identified with the above candidates. Explain in a few sentences how your definition may be better thatn the above ones.
 
 **Please read the above instructions carefully and answer both of the items above in the text box below. Your answer will be reviewed by other users and by the instructors. Please answer in English, and check your answer before clicking 'submit' because once submitted, you can no longer edit your answer.**
+- An AI is a way that a computer can answer to problems automatically, by no human interference. There are some tasks that they can manage to do, but some others like ethical decissions still cannot be accomplished byt the machine -- because the machine doesn't actually have a conscience, it just can solve efficiently a more logical task.
+- As the machine imitates the human behavior, it gives the optimal answer to a specific question. If there's a new question, probably the machine won't answer as perfect as it did before because normally AI's are trained to do one specific task.
+- AI is autonomous, because it "learns" by itself, and adapts to the different conditions that the problem may have. The thing is that at this point AI's are actually more narrow than they are general -- it's easier for the machine to give a more concrete answer to a concrete problem that have a general tool, that can generate different outputs for different problems.
+
+There is no right or wrong answer, but here’s what we think:
+
+“Cool things that computers can't do"
+
+The good: this adapts to include new problems in the future, captures a wide range of AI such computer vision, natural language processing.
+
+The bad: it rules out any "solved" problems, very hard to say what counts as "cool".
+
+“Machines imitating intelligent human behavior”
+
+The good: the same as in the previous. Also, imitate is a good word since it doesn't require that the AI solutions should "be" intelligent (whatever it means) and it's instead enough to act intelligently.
+
+The bad: the definition is almost self-referential in that it immediately leads to the question what is 'intelligent', also this one is too narrow in the sense that it only includes human-like intelligent behavior and excludes other forms of intelligence such as so-called swarm intelligence (intelligence exhibited by for example ant colonies).
+
+“Autonomous and adaptive systems”
+
+The good: it highlights two main characteristics of AI, captures things like robots, self-driving cars, and so on, also nicely fits machine learning-based AI methods that adapt to the training data.
+
+The bad: once again, these lead to further questions and the definition of 'autonomous' in particular isn't very clear (is a vacuum cleaner bot autonomous? How about a spam filter?). Furthermore, not all AI systems need to be autonomous and we can in fact often achieve much more by combining human and machine intelligence.
+## Recap
+<h3>After completing chapter 1, you whould be able to:</h3>
+
+- Explain autonomy and adaptivity as key concepts for explaining AI
+- Distingish between realistic and unrealistic AI (science fiction vs. real life)
+- Express the basic philosophical problems related to AI including the implications of teh Turing test and Chinese room thought experiment.
+
 # Chapter 02: AI problem solving
+## I. Search and problem solving
+<h3>Many problems can be phrased as searched problems. THis requires that we start by formulating the alternative choices and their consequences.</h3>
+
+### Search in practice: getting from A to B
+Imagine you're in a foreign city at some address (say a hotel) and want to use public transport to get to another adress (a nice restaurant, perhaps). What do you do? If you are like many people, you pull your smartphone, type in the destination and start following the instructions. 
+<br>![](images/4_1.svg)
+<br>This questions belongs to the class of search and planning problems. Similar problems need to be solved by self-driving cars, and (perhaps obviously) AI for playing games. In the game of chess, for example, the difficulty is not so much in getting a piece from A to B as keeping your pieces safe from opponent.
+![](images/4_2.svg)
+<br>Often there are many different ways to solve the problem, some which may be more preferable in terms of time, effort, cost or other criteria. Different search techniques may lead to different solutions, and developing advanced search algorithms is an established research area.
+![](images/4_3.svg)
+<br>We will not focus in the actual search algorithms. Instead, we emphasize the first stage of the problem solving process: defininf the choices and their consequences, which is often far from trivial and can require careful thinking. We also need to define what our goal is, or in other words, when we can consider the problem solved. After this has been done, we can look for a sequence of actions that leads from the initial state to the goal.
+<br>In this chapter we will discuss two kinds of problems:
+- Search and planning in static environments with only one "agent".
+- Games with two-players ("agents") competiongn against each other.
+
+These categories don't cover all possible real-world scenarios, but they are generic enough to demonstrate the main concepts and techniques.
+<br>Before we address complex search tasks like navigation or playing chess, let us start from a much simplified model in order to build up our understanding of how we can solve problems by AI.
+<br>![](images/4_4.svg)
+### Toy problem: chicken crossing
+We'll start from a simple puzzle to illustrate the ideas. A robot on a rowboat needs to move three pieces of cargo accross a river: a fox, a chicken and a sack of chicken-feed. The fox will eat the chicken if it has the chance, and the chicken will eat the chicken-feed if it has the chance, and neither is a desirable outcome. The robot is capable of keeing the animas from going harm when it is near them, but only the robot can operate the rowboat and only teo of the pieces of cargo can fit on the rowboat together with the robot. How can the robot move all of its cargo to the opposite bank of the river?
+> <h3>The easy version of the rowboat puzzle</h3>
+>If you have heard this riddle before, you might know that it can be solved even with less space on the boat. That will be an exercise for you after we solve this easier.
+<br>We will model the puzzle by nothing that five movable things have been identified: the robot, the rowboat, the fox, the chicken, and the chicken-feed. In principle, each of the five can be on either side of the river, but since only the robot can operate the rowboat, the two will always be on the same side. Thus there are four things with two possible positions for each, which makes for sixteen combinations, which we will call states:
+<h3>States of the chicken crossing puzzle</h3>
+
+| State 	| Robot 	| Fox 	| Chicken 	| Chicken-feed 	|
+|---	|---	|---	|---	|---	|
+| NNNN 	| Near side 	| Near side 	| Near side 	| Near side 	|
+| NNNF 	| Near side 	| Near side 	| Near side 	| Far side 	|
+| NNFN 	| Near side 	| Near side 	| Far side 	| Near side 	|
+| NNFF 	| Near side 	| Near side 	| Far side 	| Far side 	|
+| NFNN 	| Near side 	| Far side 	| Near side 	| Near side 	|
+| NFNF 	| Near side 	| Far side 	| Near side 	| Far side 	|
+| NFFN 	| Near side 	| Far side 	| Far side 	| Near side 	|
+| NFFF 	| Near side 	| Far side 	| Far side 	| Far side 	|
+| FNNN 	| Far side 	| Near side 	| Near side 	| Near side 	|
+| FNNF 	| Far side 	| Near side 	| Near side 	| Far side 	|
+| FNFN 	| Far side 	| Near side 	| Far side 	| Near side 	|
+| FNFF 	| Far side 	| Near side 	| Far side 	| Far side 	|
+| FFNN 	| Far side 	| Far side 	| Near side 	| Near side 	|
+| FFNF 	| Far side 	| Far side 	| Far side 	| Far side 	|
+| FFFN 	| Far side 	| Far side 	| Far side 	| Far side 	|
+| FFFF 	| Far side 	| Far side 	| Far side 	| Far side 	|
+
+We have given short names to the states, because otherwise it would be cumbersome to talk about them. Now we can say that the starting state is NNNN and the goal state is FFFF, instead od something like "in the starting state, the robot is on the near side, the foz is on the near side, the chicken is on the near side, and also the chicken-feed is on the near-side", and so on.
+<br>Some of these are forbidden by the puzzle conditions. For example, in state NFFN (meaning that the robot is on the near side, with the chicken-feed byt the fox and the chicken are on the far side), the fox will eat the chicken, which we cannot have. Thus we can rule out states `NFFN`, `NFFF`, `FNNF`, `FNNN`, `NNFF`, and `FFNN` (you can check each one if you doubt ourreasoning). We are left with the following ten states:
+
+| State 	| Robot 	| Fox 	| Chicken 	| Chicken-feed 	|
+|---	|---	|---	|---	|---	|
+| NNNN 	| Near side 	| Near side 	| Near side 	| Near side 	|
+| NNNF 	| Near side 	| Near side 	| Near side 	| Far side 	|
+| NNFN 	| Near side 	| Near side 	| Far side 	| Near side 	|
+| NFNN 	| Near side 	| Far side 	| Near side 	| Near side 	|
+| NFNF 	| Near side 	| Far side 	| Near side 	| Far side 	|
+| FNFN 	| Far side 	| Near side 	| Far side 	| Near side 	|
+| FNFF 	| Far side 	| Near side 	| Far side 	| Far side 	|
+| FFNF 	| Far side 	| Far side 	| Near side 	| Far side 	|
+| FFFN 	| Far side 	| Far side 	| Far side 	| Near side 	|
+| FFFF 	| Far side 	| Far side 	| Far side 	| Far side 	|
+
+Next we will figure out which state transitions are possible, meaning simply that as the robot rows the boat with some of the items as cargo, what the resulting state in each case. It's best to draw a diagram of the transitions, and since any transition the first letter alternates between N and F, it is convenient to draw the states starting with N (so the robot is on the near side) in one row and the states starting with F in another row:
+<br>![](images/4_5.svg)
+<br>Now let's draw the transitions. We could draw arrows that have a direction so that they point from one node to another, but in this puzzle the transitions are symmetric: if the robot can row state `NNNN` to state `FNFF`, it can equally well row the other way from `FNFF` to `NNNN`. Thus is simpler to draw the transitions simply with lines that don't have lines that don't have a direction. Starting from `NNNN`, we can go to `FNFF`, `FNFN`, `FNFF`, and `FFFN`:
+<br>![](images/4_6.svg)
+<br>Then we will fill in the rest:
+<br>![](images/4_7.svg)
+<br>We have done quite a bit of work on the puzzle without seeming any closer to the solution, and ther is little doubt that you could have solved the whole puzzle already by using your "natural intelligence". But for more complex problems, where the number of possible solutions grows in the thousands and in the millions, our systematic or mechanical approach will shine since the hard part will be suitable for a simple computer to do. Now that we have formulated the alternative states and transitions between them, the rest becomes a mechanical task: find a path fro mthe initial state `NNNN` to the final state `FFFF`.
+<br>One such path is colored in the following picture. The path proceeds from `NNNN` to `FFFN` (the robot takes the fox and the chicken to the other side), thence to `NFNN` (the robot takes the chicken back on the starting side) and finally to `FFFF` (the robot can now move the chicken and the chicken-feed to the other side).
+<br>![](images/4_8.svg)
+### State space, transitions, and costs
+To formalize a planning problem, we use concepts such as the state space, transitions, and costs.
+> <h3>The state space</h3>
+>means the set of posible situations. In the chicken-crossing puzzle, the state space consisted of ten allowed states `NNNN` trough to `FFFF` (but not for example `NFFF`, which the puzzle rules don't allow). If the task is to navigate from place A to place B, the state space could be the set of locations defined by their (x, y) coordinates that can be reached from the starting point A. Or we could use a constrained set of locations, for example, different street addresses so that the number of possible states is limited.
+><h3>Transitions</h3>
+>are possible moves between one state and another, such as `NNNN` to `FNFN`. It is important to note that we only count direct transitions that can be accomplished with a single action as transitions. A sequence of multiple transitions, for example, from A to C, from C to D, and from D to B (the goal), is a path rather than a transition.
+><h3>Costs</h3>
+>refer to the fact that, oftentimes the different transitions aren't all alike. They can differ in ways that make some transitions more preferable or cheaper (in a not necessarily monetary sense of the word) and others more constly. We can express this by associating with each transition a certain cost. If the goal is to minimize the total distance traveled, then a natural cost is the geographical distance between states. On the other hand, the goal could actually be to minimize the time instead of the distance, in which case the natural cost would obviously be the time. If all the transations are equal, then we can ignore the costs.
+### exercise05: A smaller rowboat
+In the traditional version of this puzzle the robot can only fit one thing on the boat with it. The state space is still the same, but fewer transitions are possible.
+<br>**Using the diagram with the possible states below as a starting point, draw the possible transitions to it** (it is MUCH easier to do this with a pen and paper than without).
+<br>Having drawn the state transition diagram, **find the shortest path from NNNN to FFFF, and calculate the number of transitions on it**.
+<br>Please type your answer s the **number of transitions in the shortest path** (just as a sible number like "12"). Hint: do *not* count the number od states, but the number of transitions. For example, the number of transitions in the path `NNNN`->`FFNF`->`NFNF`->`FFFF` is *3* instead of 4.
+<br>![](images/4_9.svg)
+>The correct answer is 7. There are two shortest paths that lead from the start `NNNN` to the goal `FFFF`. One of them is `NNNN` -> `FNFN` -> `NNFN` -> `FFFN` -> `NFNN` -> `FFNF` -> `NFNF` -> `FFFF`, and the other `NNNN` -> `FNFN` -> `NNFN` -> `FNFF` -> `NNNF` -> `FFNF` -> `NFNF` -> `FFFF`. Intuitively, the strategy is to move the chicken on the other side first, and then go back get either the fox or the feed, and take it to the far side too. The robot then takes the chicken back to the near side to save it from being eaten or from eating the feed, and takes the other remaining object (fox or feed) from the near side to the far side. Finally, the robot goes to fetch the chicken and takes it to the far side to reach the goal.
+### exercise06: the towers of Hanoi
+Let's do another puzzle: the well-known [Towers of Hanoi](https://www.britannica.com/topic/Tower-of-Hanoi). In our version, the puzzle involves three pegs, and two discs: one large, and one small (actually, there can be any number of discs but the exercise, two is enough to demonstrate the principle).
+<br>In the initial state, both discs are stacked in the first (leftmost) peg. The goal is to move the discs to the third peg. You can move one disc at a time, from any pe to another, as long as there is no other disc on top of it. It is not allowed to put a larger disc on top of a smaller disct.
+<br>This picture shows the initial state and the ogal state. There are also seven other states so that the total number of possible states in nine: three ways to place the large disc and for each of them, three was to place the small disc.
+<br>![](images/4_10.svg)
+<br>**Your task**: Draw the state diagram. The diagram should include all the nine possible states in the game, connected by lines that show the possible transitions. The pictures below shows the overall structure of the state diagram and the positions of the first three states. It shows that from the starting state (at the top corner), you can move to two other states by moving the small disc. Complete the state diagram by placing the remainig states in the correct places. Note that the transitions are again symmetric and you can also move sideways (left or right) or up in the diagram.
+<br>After solving the task using pen and paper, enter your solution by choosing which state belongs to which node in the diagram. (Hint: each state belongs to exactly one node).
+<br>![](images/4_11.svg)
+<br>**Choose for each node (1-6 in the above diagram the correct state A-F from below**
+<br>![](images/4_12.svg)
+- box1: State E is the only option that is reachable from the left box on the second row.
+- box2: Since box 1 contains state E, there are two possibilities for box 2: states B and F. Choosing state F in box 2 would lead to a dead-end at box 5, so the correct option must be state B. Also note that box 2 has two transitions to other states, which implies that it must be a state where the two discs are on top of each other.
+- box3: Since box 1 contains state E, there are two possibilities for box 3: states B and F. Choosing state B would lead to a dead end in box 5, so the correct choice must be state F.
+- box4: State D is the only option that is reachable from the right box on the second row.
+- box5: Since box 4 contains state D, there are two possibilities for box 5: states A and C. Choosing state A would lead to a dead end in box 3, so the correct choice must be state C.
+- box6: Since box 4 contains state D, there are two possibilities for box 6: states A and C. Choosing state C would lead to a dead end in box 5, so the correct choice must be state A. Also note that box 6 has two transitions to other states, which implies that it must be a state where the two discs are on top of each other.
+
+## II. Solving problems with AI
+## III. Search and games
 # Chapter 03: Real world AI
 # Chapter 04: Machine Learning
 # Chapter 05: Neural networks
