@@ -1,4 +1,10 @@
-<h1 id="chapter-1">Chapter 01: what is AI?</h1>
+# Table of contents
+[# chapter 01: what is ai](#chapter-01-what-is-ai)
+<br>[# chapter 02: ai problem solving](#chapter-02-ai-problem-solving)
+<br>[# chapter 03: real world ai](#chapter-03-real-world-ai)
+<br>[# chapter 04: machine learning](#chapter-04-machine-learning)
+<br>[# chapter 05: neural networks](#chapter-05-neural-networks)
+<br>[# chapter 06: implications](#chapter-06-implications)
 
 # Chapter 01: what is AI?
 ## I. How should we define AI?
@@ -326,7 +332,23 @@ For example, it shows that McCarthy wanted to bypass any arguments in the spirit
 As computers developed to the level where it was feasible to experiment with practical AI algorithms in the 1950s, the most distinctive AI problems (besides cracking Nazi codes) were games. Games provided a convenient restricted domain that could be formalized easily. Board games such as checkers, chess, and recently quite predominently Go (an extremely complex strategy board game originating from China at leas 2500 years ago), have inspired countless researchers, and continue to do so.
 <br>Closely related to games, search and planning techniques were an are where AO led to great advances in the 1960s: algorithms with names such as the Minimax algorithm or Alpha-Beta Pruning, which were developed then, are still the basis for game playing AI, although of course more advanced variants have been proposed over the years. In this capter, we will study games and planning problems on a conceptual level.
 ## III. Search and games
+<h4>In this section, we will study a classic AI problem: games. The simplest scenario, which we will focus on for the sake of clarity, are two-player, perfect-information games such as tic-tac-toe and chess.</h4>
+
+### Example: playing tic tac toe
+Maxine and Minnie are true game enthusiasts. THey just love games. Especially two-person, perfect information games such as tic-tac-toe or chess. One day they were playing tic-tac-toe. Maxine, or Max, as her friends call her, was playing with X. Minnie, or Min as her friends call her, had the Os. Min had just played her turn and the board looked as follows:
+<br>![](images/5_1.svg)
+<br>Max was looking at the board and contemplating her next move, as it was her turn, when she suddenly buried her face in her hands in despai, looking quite like Garry Kasparov playing Deep Blue in 1997.
+<br>Yes, Min was close to getting three Os on the top row, but Max could easily put a stop to that plan. So why was Max so pesimistic?
+### Game trees
+To solve games using AI, we will intoduce the concept of a game tree. The different states of the game are represented by nodes in the game tree, very similar to the above planning problems. The idea is just slightly differnet. In the game tree, the nodes are arranged in levels that correspond to each player's turns in the game so that the "root" node of the tree (usually depicted at the top of the diagram) is the beginning position in the game. In tic-tac-toe, this would be the empty grid with no Xs or Os played yet. Under root, on the second level, there are the possible states that can result from the fist player's moves, be it X or O. We call these nodes the "children" of the root node.
+<br>Each node on the second level, would further have as its children nodes the states that can be reached from it by the opposing player's moves. This is continued, level by level, until reaching states where the game is over. In tic-tac-toe, this means that either one of the players gets a line of three and wins, or the board is full and the game ends in a tie.
+### Minimizing and Maximizing value
+In order to be able to create game AI that attempts to win the game, we attach a numerical value to each possible end result. To the board positions where X has a line of three so that Max wins, we attach the value +1, and likewise, to the position where min wins with three Os in a row we attach the value -1. For the positions where the board is full and neither player wins, we use the neutral value 0 (it doesn't really matter what the values are as long as they are in this order so that Max tries to maximize the value, and Min tries to minimize it).
+
 # Chapter 03: Real world AI
+
 # Chapter 04: Machine Learning
+
 # Chapter 05: Neural networks
+
 # Chapter 06: Implications
