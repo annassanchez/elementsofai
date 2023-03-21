@@ -1,10 +1,27 @@
 # Table of contents
 [# chapter 01: what is ai](#chapter-01-what-is-ai)
-<br>[# chapter 02: ai problem solving](#chapter-02-ai-problem-solving)
-<br>[# chapter 03: real world ai](#chapter-03-real-world-ai)
-<br>[# chapter 04: machine learning](#chapter-04-machine-learning)
-<br>[# chapter 05: neural networks](#chapter-05-neural-networks)
-<br>[# chapter 06: implications](#chapter-06-implications)
+
+[I. how should we define ai](#i-how-should-we-define-ai)
+<br>[II. related fields](#ii-related-fields)
+<br>[III. philosophy of ai](#iii-philosophy-ai)
+
+[# chapter 02: ai problem solving](#chapter-02-ai-problem-solving)
+
+[I. search and problem solving](#i-search-and-problem-solving)
+<br>[II. solving problems with ai](#ii-solving-problems-with-ai)
+<br>[III. search and games](#iii-search-and-games)
+
+[# chapter 03: real world ai](#chapter-03-real-world-ai)
+
+[I. odds and probability](#i-odds-and-probability)
+<br>[II. the bayes rule](#ii-the-bayes-rule)
+<br>[III. naive bayes rule](#iii-naive-bayes-classification)
+
+[# chapter 04: machine learning](#chapter-04-machine-learning)
+
+[# chapter 05: neural networks](#chapter-05-neural-networks)
+
+[# chapter 06: implications](#chapter-06-implications)
 
 # Chapter 01: what is AI?
 ## I. How should we define AI?
@@ -344,8 +361,70 @@ To solve games using AI, we will intoduce the concept of a game tree. The differ
 <br>Each node on the second level, would further have as its children nodes the states that can be reached from it by the opposing player's moves. This is continued, level by level, until reaching states where the game is over. In tic-tac-toe, this means that either one of the players gets a line of three and wins, or the board is full and the game ends in a tie.
 ### Minimizing and Maximizing value
 In order to be able to create game AI that attempts to win the game, we attach a numerical value to each possible end result. To the board positions where X has a line of three so that Max wins, we attach the value +1, and likewise, to the position where min wins with three Os in a row we attach the value -1. For the positions where the board is full and neither player wins, we use the neutral value 0 (it doesn't really matter what the values are as long as they are in this order so that Max tries to maximize the value, and Min tries to minimize it).
+#### A sample game tree
+Consider, for example, the following game tree which begins not at the root but in the middle of the game (because otherwise, the tree would be way too big to dsiplay). Note that this is different from the game shown in the illustration in the beginning of this section. We have numbered the nodes with numbers 1, 2, ..., 14.
+<br>The tree is composed of alternating layers where it is either Min's turn to place an O or Max's turn to place an X at any of the vacant slots on the board. THe player whose turn it is to play next is shown at the left.
+<br>![](images/5_2.svg)
+<br>The game continues at the board position shown in the root node, numbered as (1) at the top, with Min's turn to place O at any of the three vacant cells. Nodes (2)-(4)  show the board positions resulting from each of the three choices respectively. In the next step, each node has two possible choices for Max to play X each, and so the tree branches again.
+<br>When starting from the above starting position, the game always ends in a row of three: in nodes (7) and (9), the winner is Max who plays with X,and in nodes (11)-(14) the winner is Min who plays with O.
+<br>Note that since the players' turn alternate, the levels can be labeled as Min levels and Max levels, which indicate whose turn it is.
+### Being stategic
+<br>Consider nodes (5)-(10) on the second level from the bottom. In nodes (7) and (9), the game is over, and Max wins with three X's in a row. The value of these positions is +1. In the remaining nodes (5), (6), (8) and (10), the game is also practically over, since Min only needs to place her O in the only remaining cell to win. In other words, we know how the game will end at each node on the second level from the bottom. We can therefore decide that the value of nodes (5), (6), (8) and (10) is also -1.
+<br>![](images/5_3.svg)
+<br>Here comes the interesting part. Let's consider the values of the nodes one level higher towards the root: nodes (2)-(4). Since we observed that both of thechildren of (2), i.e., nodes (5) and (6), lead to Min0s victory, we can without hesitation attach the value -1 to node (2) as well. However, for node (3), the left child (7) leads to Max's victory, +1, but the right child (8) leads to Min winning, -1. What is the valye of node (3)? Think about this for a while, keeping in mind who makes the coice at node (3).
+<br>Since it is Max's turn to play, she will of course choose the left child, node (7). Thus, every time we reach the board position in node (3), Max can ensure victory, and we can attach the value +1 to node (3).
+<br>The same holds for node (4): again, since Max can choose where to put her X, she can always ensure victory, and we attach the value +1 to node (4).
+<br>![](images/5_4.svg)
+### Determining who wins
+<br>The most important lesson in this section is to apply the above kind of reasoning repeatedly to determine the result of the game in advance from any board position.
+<br>So far, we have decided that the value of node (2) is -1, which means that if we end up in such a board position, Min can ensure winning, and that the reverse holds for nodes (3) and (4): their value is +1, which means that Max can be sure to win if she only plays her own turn wisely.
+<br>Finally, we can deduce that since Min is an experienced player, she can reach the same conclusion, and thus she only has one real option: play the O in the middle of the board.
+<br>In the diagram below, we have included the value of each node as well as the optimal game play starting at Min's turn in the root node.
+<br>![](images/5_5.svg)
+### The value of the root node = who wins
+<br>The value of the root node, which is said to be the value od the game, tells uys who wins (and how much, if the outcome is not just win or lose): Max wins if the value of the game is +1, Min if the value is -1, and if the value is 0, then the game will end in a draw. In other games, the value may also take other values (such as the monetary value of the chips in front of you in poker for example).
+<br>This all is based on the assumption that both players choose what is best for them and that what is best for one is the worst for the other (so called "zero-sum game").
+> <h3>Finding the optimal moves</h3>
+> Having determined the values of all the nodes in the game tree, the optimal moves can be deduced: at any Min node (where it is Min's turn), the optimal choice is given by the child node whose value is minimal, and conversely, at any Max node (where it is Max's turn), the optimal choice is given by the child node whose value is maximal. Sometimes there are many equally good choices that are, well, equally good, and the outcome willl be the same no matter which one of them is picked.
+### The Minimax algoithm
+We can exploit the above concept of the value of the game to obtain an algorithm called the Minimax algorithm. It guarantees optimal game play in, theretically speaking, any deterministic, two-person, perfect-information zero-sum game. Given the state of the game, the algorithm simply computes the values of the children of the given state and chooses the one that has the maximum value if it is Max's turn, and the one that has the minimum value if it is Min's turn.
+<br>The algorithm can be implemented using a few lines of code. However, er will be satisfied with having grasped the main idea. If you are interested in taking a look at the actual algorithm (alert: programming required) feel free to check out, for example, [Wikipedia: Minimax](https://en.wikipedia.org/wiki/Minimax#Minimax_algorithm_with_alternate_moves).
+![](images/5_6.svg)
+### COunds good, can I go home now?
+As stated above, the Minimax can be used to implement optimal game play in any deterministic, two-player, perfect-informtion zero-sum game. Such games include tic-tac-toe, connect four, Go, etc. Rock-paper-scissors is not in this class of games since it involves information hidden from the other player; nor are Monopoly or backgammon which are not deterministic. So far as this topic is concerned, is that all folks, can we go home now? The answer is that in theory, yes, but in practice, no.
+> <h3>The problem of massive game trees</h3>
+> In many games, the game tree is simply way too big to traverse in full. For example, in chess the avarage branching factor, i.e., the average number of children (available moves) per node is about 35. That means that to explore all the possible scenarios up to only two moves ahead, we need to visit approximately 35 x 35 = 1225 nodes - probably not your favorite pencil-and-paper homework exercise. A look-ahead of three moves requires visiting 42875 nodes; four moves 1500625; and ten moves 2758547353515625 (that’s about 2.7 quadrillion) nodes. In Go, the average branching factor is estimated to be about 250. Go means no-go for Minimax.
+### More tricks: Managing massive game trees
+A few more tricks are needed to manage massive game trees. Many of them were crucial elements in IBM's Deep Blue computer defeating the chess world champion Garry Kasparov in 1997.
+<br>If we can afford to explore only a small part of the game tree, we need a way to stop the Minimax algorithm before reaching an end-node, i.e., a node where the game is over and the winner is known. This is achieved by using a so called **heuristic evaluation function** that takes as input a board position,m including the information about which player's turn is next, and returns a score that should be an estimate of the likely outcome of the game continuing from the given board position.
+> <h3>Good heuristics</h3>
+>Good heuristics for chess, for example, typically count the amount of material (pieces) wighted by their type: the queen is usually considered worth about two times as much as a rook, three times a knight or a bishop, and nine times as much as a pawn. The king is of course worth more than all other things combined since losing it amounts to losing the game. Further, occupying the strategicaly important positions near the middle of the board is considered an advantage and the heuristics assign higher value to such positions.
+
+The Minimax algorithm presented above requiers minimal changes to obtain a **depth-limited** version where the heuristic ius returned at all nodes at a given depth limit: the depth simply refers to the number of steps that the game is expanded before applying a heuristic evaluation funcion.
+### exercise07: why so pessimistic, Max?
+Let's return to the tic-tac-toe game described in the beginning of this section. To narrow down the space of possible end-games to consider, we can observe that Max must clearly place an X on the top row to avoid imminent defeat:
+<br>![](images/5_7.svg)
+<br>Now it's Min's trun to play an O. Evaluate the value of this state of the game as well as the other states in the game tree where the above psition is the root, using the Minimaz algorithm.
+<br>**Your task**:
+<br>Look at tge game tree starting from the below board position. Using a pencil and paper, fill in the values of the bottom-level nodes where the game is over. Note that this time some of the games end in a draw, which means that the values of the node is 0 (instead of -1 or 1).
+<br>Next continue filling the values of the nodes in the next level up. Since there is no branching at that level, the values on the second-lowest level are the same as at the bottom level.
+<br>On the second-highest level, fill in the values by choosing for each node the maximum of the values of the child nodes - as you notice, this is a MAX level. Finally, fill in the root node's value by choosing the minimum of the root node's child nodes' values. This is the value of the game.
+<br>**Enter the value of the game as your answer**.
+<br>![](images/5_8.svg)
+<br>The value is –1. The values on the second level are 0, 0, and –1. The values on the third level are –1, 0, –1, 0, –1, –1, which are the same as the values on the bottom level. As you can see, Max has all the reason to be serious since by playing in the bottom-right corner, Min can guarantee a win. The inevitable victory of Min can also be seen from the value of the game –1.
+><h3>The limitations of plain search</h3>
+>It may look like we have a method to solve any problem by specifying the states and transitions between them, and finding a path from the current state of our goal. Alas, things get more complicated when we want to apply AI in real world problems. Basically, the number of states in even a moderately complex real-world scenario grows out of hand, and we can't find a solution by exhaustive search ("brute force") or even by using clever heuristics.
+><br>Moreover, the transitions which take us from one state to the next when we choose an action are not deterministic. This means that whatever we choose to do will not always completely determine the outcome because there are factors that are beyond our control, and that are often unknown to us.
+><br>The algorithms we have discussed above can be adapted to handle some randomness, for example randomness in choosing cards from a shuffled deck or throwing dice. This means that we will need to introduce the concept of uncertaintiy and probability. Only thus we can begin to approach real-world AI instead of simple puzzles and games. This is the topic of Chapter 3.
+## Recap
+- Formulate a real-world problem as a search problem.
+- Formulate a simple game (such as tic-tac-toe) as a game tree
+- Use the minimax principle to find optimal moves in a limited-soze game tree
 
 # Chapter 03: Real world AI
+## I. Odds and probability
+## II. The Bayes rule
+## III. Naive bayes classification
 
 # Chapter 04: Machine Learning
 
