@@ -490,6 +490,16 @@ As we already mentioned above, the odds 3:1 - for example three rainy days for e
 <br>Correct. Previously we had the probability as 23/(23 + 342) = 23/365, which gives us roughly 0.0630, which rounds to 6.3%.
 
 ## II. The Bayes rule
+<h3>We will not go too far into the details of probability calculus and all the ways in which it can be used in various AI applications, but we will discuss one very important formula.</h3>
+We will do this because this particular formula is both simple and elegant as well as incredibly powerful. It can be used to weigh conflicting pieces of evidence in medicine, in court of law, and in many (if not all) scientific disciplines. **The formula is called the Bayes rule (or the Bayes formula)**.
+<br>We will start by demonstrating the power of the Bayes rule by mneans of a simple medical diagnosis problem where it highlights how poorly our intuition is suited for combining conflicting evidence. We will then show how the Bayes rule can be used to build AI methods that can cope with conmflicting and noisy observations.
+
+> <h3>Prior and posterior odds</h3>
+> The Bayes rule can be expressed un many forms. The simplest one is in terms of odds. The idea is to  take the odds of something happening (afainst it not happening), which we'll call prior odds. The word prior refers to our assessment of the odds before obtaining some new information that may be relevant. The purpose of the formula is to update the prior odds when new information becomes available, to obtain the posterior odds, or the odds after obtaining the information (the dictionary meaning of posterior is "something that comes after, later").
+<br>![](images/7_1.svg)
+### How odds change
+In order to weigh the new information, and decide how the odds change when it becomes available, we need to consider how likely we would be to encounter this information in alternative situations. Let's take as an example, the odds that it will rain later today. Imagine getting up in the morning in Finland. The chances of rain are 206 in 365 (including rain, snow and hail, brrr). The number of days without rain is therefore 159. This convertis to prior odds of 265:159 for rain, so the cards are stacked against you already before you open your eyes.
+<br>However, after oepning your eyes and taking a look outside, you notice it is cloudy. Suppose the chances of having a cloudy morning on a rainy day are 9 out of 10 - that means that obly 
 
 ## III. Naive bayes classification
 
