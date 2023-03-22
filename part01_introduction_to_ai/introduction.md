@@ -458,6 +458,36 @@ For this exercise, remember the key points from the above discussion: probabilit
 ### Odds
 Probably the easiest way to represent uncertainty is through odds. They make it particularly easy to update beliefs when more information becomes available (we will return to this in the next section).
 <br>Before we proceed any further, we should make sure you are comfortable with doing basics manipulations on ratios (or fractions). As you probably recall, fractions are numbers like 3/4 pr 21/365. We will need tp mulstiply and divide such things, so it's good to refresh these operations if you fell unsure about them. A compact presentation for those who just need a quick reminder is [Wikibooks: Multiplying fractions](https://en.wikibooks.org/wiki/Arithmetic/Multiplying_Fractions). Another fun animated presentation of the basic operations is [Math is Fun: Using rational numbers](https://www.mathsisfun.com/algebra/rational-numbers-operations.html). Feel free to consult our favorite source if necessary.
+<br>By odds, we mean an expression like 3:1 (three to one), which means that we wxpect that for every three cases of an outcome, for example winning a bet, there is one case of the opposite outcome, not winning the bet. (In gambling terms, the odds are usually given from the bookmakers point of view, so 3:1 usually means that *your* chances of winning are 1:3). The other way to express way to express the same would be to say that the chances of winning 3/4 (three in four). These are called natural frequencies since they involve only whole numbers. With whole numbers, it is easy to imagine, for example, four people out of whom, three have brown eyes. Or four days out of which it rains on three (if you're in Helsinki).
+<br>![](images/6_3.svg)
+><h3>Why we use odds and not percentages</h3>
+>Three out of four is of course the same as 75% (mathematicians prefer to use fractions like 0.75 instead of percentages). It has been found that people get confused and make mistakes more easily when dialing with fractions and percentages than with natural frequencis or odds. THis is why we use natural frequencies and adds whenever convenient.
+
+An important thing to notice is that while expressed as two numbers, 3 and 1, for example, the odds can actually be thought of as single fraction or a ratio, for example 3/1 (three divided by one) which is equal to 3. THus, the odds 3:1 is the same as the ofdds 6:2 or 30:10 since these ratios are also equals to 3. Likewise, the odds 1:5 can be thought as 1/5 (one divided by 5) which equals 0.2. Again, this is the same as the odds 2:10 or 10:50 because that's what you get dividing 2 by 10 or 10 by 50. But be very careful! The odds 1:5 (one win for every five losses), even if it can be expressed as the decimal number 0.2, is differenct from 20% probability (or probability 0.2 using the mathematicians' notation). The odds 1:5 mean that you'd have to play the game six times to get one win on the average. The probability 20% means that you'd have to play five times to get one win on average.
+<br>For odds that are greater than one, such as 5:1, it is easy to remember that we are not dealing with probabilities because no probability can be greater than 1 (or greater than 100%), but for oods that are less than one, such as 1:5, the danger od confusion lurks around the corner.
+<br>So make sure you always know when we are talking about odds when we ate talking about probabilities.
+<br>The following exercises will help you practice dealing with correspondence between odds and probabilities. Don't worry if you make some mistakes at this stage: the main goal is to learn the skills that you will need in the next sections.
+### exercise 09: odds
+As we already mentioned above, the odds 3:1 - for example three rainy days for each rainless day - corresponfs to probability 0.75 (75% in percentages).
+<br> In general, if the odds in favor of an event are x:y, the probability of the event is given by x / (x + y). Try that with the odds 3:1 if you like, You should get the answer 0.75.
+<br>As we also pointed out, the odds 6:2 corresponds to exactly the same probability as the odds 3:1 because when we let x=6 and y=2, and wirte them in the formula x / (x+y), which comes out as 6/8 = 3/4 = 0.75.
+<br>**Your task:**
+<br>For the first three times 1-3, convert the oods to probabilies as natural frequencies; for example, from 1:1 to 1/2. Give your answer as fraction, for example 2/3.
+<br>For the last three items 4-6, convert the odds into probabilities expressed as percentages (eg. 4.2 %). Give your answer in percentages using a single decimal, for example 12.2%.
+<br>*Hint:* the calculations are to be calculated with a simple calculator and the formulas can be found above.
+
+1. The odds for getting three of a kind in poker are about 1:46: 1/47.
+<br>Correct. There are 46 situations where you do not get three of a kind for one where you get it, so the probability is 1/(1+46) = 1/47.
+2. The odds for rain in San Diego are 23:342: 23/365
+<br>Correct. There are 23 rainy days for 342 dry days, so the probability is 23/(23+342) = 23/365.
+3.The odds for rain in San Diego are 23:342. 23/365
+<br>Correct. There are 23 rainy days for 342 dry days, so the probability is 23/(23+342) = 23/365.
+4. The odds for getting three of a kind in poker are about 1:46: 2.1%
+<br>Correct. Previously we had the probability as 1/(1+ 46) = 1/47, which gives us roughly 0.0213, which rounds to 2.1%.
+5. The odds for rain in Helsinki are 206:159. 56.4%
+<br>Correct. Previously we had the probability as 206/(206 + 159) = 206/365, which gives us roughly 0.5644, which rounds to 56.4%.
+6. The odds for rain in San Diego are 23:342. 6.3%
+<br>Correct. Previously we had the probability as 23/(23 + 342) = 23/365, which gives us roughly 0.0630, which rounds to 6.3%.
 
 ## II. The Bayes rule
 
