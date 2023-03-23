@@ -499,7 +499,45 @@ We will do this because this particular formula is both simple and elegant as we
 <br>![](images/7_1.svg)
 ### How odds change
 In order to weigh the new information, and decide how the odds change when it becomes available, we need to consider how likely we would be to encounter this information in alternative situations. Let's take as an example, the odds that it will rain later today. Imagine getting up in the morning in Finland. The chances of rain are 206 in 365 (including rain, snow and hail, brrr). The number of days without rain is therefore 159. This convertis to prior odds of 265:159 for rain, so the cards are stacked against you already before you open your eyes.
-<br>However, after oepning your eyes and taking a look outside, you notice it is cloudy. Suppose the chances of having a cloudy morning on a rainy day are 9 out of 10 - that means that obly 
+<br>However, after oepning your eyes and taking a look outside, you notice it is cloudy. Suppose the chances of having a cloudy morning on a rainy day are 9 out of 10 - that means that only one out of 10 rainy days start out with blue skies. But sometimes there are also clouds without rain: the chances of having clouds on a rainless day are 1 in 10. Now how much higher arethe chances of clouds on a rainy day compared to a rainless day? Think about this carfully as it will be importantto be able to comprehend the question and obtain the answer in what follows.
+<br>The answer is that the chances of clouds on a rainy day are **nine times++ as high as the chances of clouds on a rainless day: on a rainy day the chances are 9 out of 10, whereas on a rainless day the chances are 1 outof 10, which is nine times ar high.
+<br>Note that even though the two probabilities 9/10 and 1/10 sum up to 9/10+1/10 = 1, this is by no means always the case. In some other town, the mornings of rainy days could be cloudy eight times out of ten. This, however, would not mean that the rainless days are cloudy two times out of ten. You'll have to be careful to get the calculations right (but never mind if you take a mistake or two - don't give up! The Bayes rule is a fundamental thinking tool for everyone of us)-
+> <h3>Likelihood ratio</h3>
+> The above rario (nine times hicher chances of clouds on a rainy day compared to a rainless day) is called the likelihood ratio. More generally, the likelihood ratio is the probability of the observation in case of no event (in the above, no rain), Please read the previous sentence a few times. It may look a little intimidating, but it's not possible to digest if you just focus carefully. We will walk you through the steps in detail, just don't lose your nerve. We're almost there.
+So we concluded that on cloudy morning, we have: **likelihood ratio: (9/10) / (1/10) = 9**.
+<br>The mighty Bayes rule for converting prior odds into posterior odds is - ta-daa! - as follows: **posterior odds = likelihood ratui * prior odds**
+<br>Now you are probably thinking: Hold on, that's the formula? It's a frigging multiplication! That is the formula - we said simple, didn't we? You wouldn't imagine that a simple multiplication can be used for all kinds of incredibly useful applications, but it can. We'll study a couple of examples which will demonstrate this.
+> <h3>Many forms of Bayes</h3>
+> In case you have any trouble with the fillowing exercises, you may need to read the above material a few times and give ti some time, ahd if that doesn't do it, you can look for more material online. Just a woed of advice: there are many different forms in which Bayes rule can be written, and the odds form that we used isn't the most common one. There are a couple links that you may find useful:
+>
+> - [Math Doctor: Baye's Theoren and medical testing](https://www.youtube.com/watch?v=tRE6mKAIkno)
+> - [Better explained: Understanding Bayes Theorem with ratios](https://betterexplained.com/articles/understanding-bayes-theorem-with-ratios/)
+
+### exercise10: bayes rule (part 1of 2)
+Apply the Bayes rule to calculate the **posteior offs for rain** having observed clouds in the morning in Helsinki. 
+<br>As we calculated above, the prior odds for rain is **206/159** and the likelihood ratio for observing clouds is **9**.
+<br>Give your results in the for of odds, xx:yy, where xx and yy are numbers (note that xx and yy does **not** mean that the numbers shouldhave two digits each). Remember that when multiplying odds, you should only mutiply the numerator (the xx part). For example, if you multiple the odds 5:3 by 5, the result is 25:3. Give the answer without simplifying the expresion even if both sides have a common factor.
+### The Bayes rule iun practice: breast cancer screening.
+Our first realistic application is a classical example using the Bayes rule, namely medical diagnosis. This example also illustrates a common bias in dealing with uncertain information called the base-rate fallacy.
+<br>![](images/7_2.svg)
+<br>![](images/7_3.svg)
+<br>Consider mammographic sreening for breast cancer. Using made up percentages for the sake of simplifying the numbers, let's assume that 5 in 100 women have breast cancer. Suppose that if a person has breast cancer, then the mammograph test will find it 80 times out of 100. When the test comes out suggesting that breast cancer is present, we say that the result is positive, although of course there is nothing positive about this for the person being tested (a technical way of saying this is that the sensitivity of the test is 80%).
+<br>The test may also fail in the other direction, namely to indicate breast cancer when none exists. This is called a false positive finding. Suppose that i f the person being tested actually doesn't have breast cancer, the chances that the test nevertheless comes out positive are 10 in 100 (In technical terms, we would say that the specifity of the test is 90%).
+<br>Based on the above probabilities, you are able to calculate the likelihood ratio. You'll find use for it in the nest exercise, If you forgot how the likelihood ratio is calculated, you may wish to check the terminology box earlier in this section and revisit the rain example.
+<br>Note: you can use the above diagram with sick figures to validate that your result is in the ballpark (about right) but note that diagram isn't quite precise. Out of the 95 women who don't have cancer (the gray figures in the top panel), anout nine and a half are expected to get a (false) positive result. The remaining 85 and a half are expected to get a (true) negative result. We didn't want to be so cruel as to cut people - even stick figures - in half, so we used 9 and 86 as approximation.
+### exercise11: Bayes rule (part 2 of 2)
+Consider the above breast cancer scenario. An average woman takes the mammograph test and gets a positive thest result suggesting breast cancer. What do you think are the oods that she has breas cancer given the observation that the test is possible?
+<br>First, use your intuition without applying the Bayes rule, and write down on a piece of paper (not in the answer box below) what you think the chances of having breast cancer are after a positive test result. The intuitive answer will not be a part of your answer. It will be just for your own information.
+<br>Next, **calculate the posterior odds of her having breast cancer using the Bayes rule**. This will be your answer.
+<br>Hints:
+
+1. Start by calculating the prior odds.
+2. Determine the probability of the observation in case of the event (cancer).
+3. Determine the probability in case if no event (no cancer).
+4. Obtain the likelihood ratio as the ratio of the above two probabilities
+5. Finally, multiply the prior odds by the likelihood ratio.
+
+Enter the posterior offs as your solution below. Give the answer in the form xx:yy, where xx and yy are numbers, without simplifying the expression even if both sides have a common factor.
 
 ## III. Naive bayes classification
 
