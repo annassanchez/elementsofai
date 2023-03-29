@@ -517,6 +517,9 @@ So we concluded that on cloudy morning, we have: **likelihood ratio: (9/10) / (1
 Apply the Bayes rule to calculate the **posteior offs for rain** having observed clouds in the morning in Helsinki. 
 <br>As we calculated above, the prior odds for rain is **206/159** and the likelihood ratio for observing clouds is **9**.
 <br>Give your results in the for of odds, xx:yy, where xx and yy are numbers (note that xx and yy does **not** mean that the numbers shouldhave two digits each). Remember that when multiplying odds, you should only mutiply the numerator (the xx part). For example, if you multiple the odds 5:3 by 5, the result is 25:3. Give the answer without simplifying the expresion even if both sides have a common factor.
+
+1854:159 - Correct. The prior odds are 206:159. The likelihood ratio is 9, so we get the posterior odds for rain given clouds to be 9 × 206:159 = 1854:159. So in the long run, on the days when we observe clouds in the morning, we can expect 1854 rainy days for every 159 rainless days, which is about the same as 12 rainy days for one rainless day. If we wanted to express this as a probability (even though this was not the question), we could use the formula x / (x+y) to get the value 1854 / (1854+159) which is about 0.92, or about 92% chance of rain when there are clouds in the morning. Better take an umbrella.
+
 ### The Bayes rule iun practice: breast cancer screening.
 Our first realistic application is a classical example using the Bayes rule, namely medical diagnosis. This example also illustrates a common bias in dealing with uncertain information called the base-rate fallacy.
 <br>![](images/7_2.svg)
@@ -539,7 +542,83 @@ Consider the above breast cancer scenario. An average woman takes the mammograph
 
 Enter the posterior offs as your solution below. Give the answer in the form xx:yy, where xx and yy are numbers, without simplifying the expression even if both sides have a common factor.
 
+40:95. Correct. The prior odds describe the situation before getting the test result. Since five out of 100 women have breast cancer, there is on the average five women with breast cancer for every 95 women without breast cancer, and therefore, the prior odds are 5:95. The likelihood ratio is the probability of a positive result in case of cancer divided by the probability of a positive result in case of no cancer. With the above numbers, this is given by 80/100 divided by 10/100, which is 8. The Bayes rule now gives the posterior odds of breast cancer given the positive test result: posterior odds = 8 × 5:95 = 40:95, which is the correct answer. So despite the positive test result, the odds are actually against the person having breast cancer: among the women who are tested positive, there are on the average 40 women with breast cancer for every 95 women without breast cancer. Note: If we would like to express the chances of breast cancer given the positive test result as a probability (even though this is not what the exercise asked for), we would consider the 40 cases with cancer and the 95 cases without cancer together, and calculate what portion of the total 40 + 95 = 135 individuals have cancer. This gives the result 40 out of 135, or about 30%. This is much higher than the prevalence of breast cancer, 5 in 100, or 5%, but still the chances are that the person has no cancer. If you compare the solution to your intuitive answer, they tend to be quite different for most people. This demonstrates how poorly suited out intuition is for handling uncertain and conflicting information.
+
+### The base rate fallacy
+While doing the above exercise, youmay have noticed that our intuition is not well geared towards weighing different pieces of evidence. This is true specially when the pieces of evidence conflict with each other. In the above example, on the one hand, the *base rate* of breast cancer was relatively low, meaning that breast cancer is relatively rare. So our brain thinks that it's unlikely that a person has it. On the other hand, the positive mammograph test suggests the opposite. Our brain tends to choose one of these pieces of evidence and ignore the other. It is typically the low base rate is ignored. That's why your intuition probably says that the psoterior probability of having breast cancer given the psoitive test result is much higher than 30%. This is known as the so called [base rate fallacy](https://en.wikipedia.org/wiki/Base_rate_fallacy). Knowing the Bayes rule is the best cure against it.
+
 ## III. Naive bayes classification
+<h3>One of the most useful applications of the Bayes rule is the so-called naive Bayes classifier.</h3>
+
+The Bayes classifier is a machine learning technique that can be used to classify objects such as text documents into two or more classes. The classifier is trained by analyzing a set of training data, for which the correct classes are given.
+<br>The naive Bayes classifier can be used to determine the probabilities of the classes given a number of different observations. THe assumption in the model is that the feature variables are conditionally independent given the class (we will not discuss the meaning of conditional independece in this course. For our purposes, it is enough to be able to exploit conditional indepence in building the classifier).
+
+### Real world application: spam filter
+We will use a spam email filter as a running example for illustrating the idea of the naive Bayes classifier. Thus, the class varaible indicates whether a messge is spam (or "junk email") or whether it is a legitimate message (also called "ham"). The words in the message correspond to the feature variables, so that the number of feature variables in the model is determined by the length of the message.
+><h3>Why we call it "naive"</h3>
+>Using spam filters as an example, the idea is to think of the words as being produced by shoosing one word after the other so that the choice of the word depends only on whether the message is spam ir ham. This is a crude simplification of the process because it means that tthere is no dependency between words, and the order of the words has no significance. This is in fact why the method is called naive,
+
+Because the model is based on the idea that the words can be processed independently, we can identify specific words that are indicative of either spam ("FREE", "LAST") or ham ("meeting", "algorithm").
+<br>![](images/8_1.svg)
+<br>Despite its naivete, the naive bayes method tends to work very well in practice. This is a good example of the common saying in statistics, "all models are wrong, but some are useful" means (the aphorism is generally attributed to statiscian [George E. P. Box](https://en.wikipedia.org/wiki/George_E._P._Box))
+
+### Estimating parameters
+To get started, we need to specify the prior to specify the prior odds for spam (against ham). For simplicity assume this to be 1:1 which means that on the average of the incoming messages are spam (in reality, the amount of spam is probably much higher).
+<br>To get our likelihood ratios, we need two different probabilities for any word occurring: one in spam messages and another one in ham messages.
+<br>The word distributions for the two classes are best estimated from actual training data that contains some spam messages as well as legitimate messages. The simplest way is to count how many times each word, abacus, acacia, ..., zurg, appears in the sata and divide the number by the total word count.
+<br>To illustrate the idea, let's assume that we have at our disposal some spam and some ham. You can easyly obtain such data by saving batch of your emails in two files.
+<br>Assume that we have calculated the number of occurrences of the following words (along with all other words) in the two classes of messages. 
+
+| **word** 	| **spam** 	| **ham** 	|
+|---	|---	|---	|
+| million 	| 156 	| 98 	|
+| dollars 	| 29 	| 119 	|
+| adclick 	| 51 	| 0 	|
+| conferences 	| 0 	| 12 	|
+| **total** 	| 95791 	| 306438 	|
+
+We can now estimate that teh probability taht a word in a spam message is a "million", for example, is about 156 out of 95791, which is roughly the same as 1 in 614. Likewise, we get the estimate that 98 out of 306438 words, which is about the same as 1 in 3127, in a ham message are million. Noth of these probability estimates are small, less than 1 in 500, but more importantly, the former is higher than the latter: 1 in 614 is higher than 1 in 3127. This means that the likelihood ratio, which is the first ratio divided by the second ratio, is more than one. To be more precise, the ratio is (1 / 614) / ( 1 / 3127) = 3127 / 614 = 5.1 (rounded to one decimal digit).
+<br>Recall that if you have any trouble at all with following the math in this section, you should refresh the arithmetic with fractions using the pointers we gave earlier (see the part about Odds in section *Odds and Probability*).
+><h3>Zero means trouble</h3>
+>One problem with estimating the probabilities directly from the counts is that zero counts lead to zero estimates. This can be quite harmful for the performance of the classifier - it easily leads to situations where the posterior odds are 0/0, which is nonsense. The simplest solution is to use a small lower bound for all probability estimates. The value 1/100000, for instance, does the job.
+
+Using the above logic, we can determine the likelihood ratio for all possible words without having to use zero, giving us the following likelihood ratios:
+
+| **word** 	| **likelihood ratio** 	|
+|---	|---	|
+| million 	| 5.1 	|
+| dollars 	| 0.8 	|
+| adclick 	| 53.2 	|
+| conferences 	| 0.3 	|
+
+We are now ready to applu the method to classify new messages.
+
+### Example is it spam or ham?
+Once we have the prior odds and the likelihood ratios calculated, we are ready to apply the Bayes rule, which we already practiced in the medical daignosis case as our example. The reasoning goes just like it did before: we updated the odds of spam by multiplying it by the likelihood ratio. To remind ourselves of the procedure, let's try a message with a single word to begin with. For the prior odds, as agreed above, you whould use odds 1:1.
+### exercise12: one word spam filter.
+Let's start with a message that only has one word in it: "million".
+<br>**Your task**: Calculate the **posterior odds** for spam given this word using the table above, starting from prior odds 1:1. Keep in mind that the odds is **not** the same as the probability, which we would usually express as a percentage.
+<br>**Give your answer in the form od a single decimal number x.x using the dot '.' as the decima separator.**
+<br>(Remember that odds can be represented as xx:yy or simply as a single decimal number, say z.z (where z.z = xx/yy). You may wish to revisit the discussion on this just before [exercise 09](#exercise-09-odds)).
+
+5.1. Correct. As you may have noticed, the structure of this exercise is identical to that of the previous exercise about medical diagnosis. We have the class label spam or ham, and one piece of evidence that we can use to update our prior odds to obtain the posterior odds. We decided above that the prior odds are 1:1. The likelihood ratio is obtained by dividing the probability of the word 'million' in spam divided by the probability of the word 'million' in ham. This we already calculated above, and it can be found in the table of likelihood ratios: the value is 5.1. Now multiply the prior odds by the likelihood ratio to get 1:1 × 5.1 = 5.1. This is the posterior odds. Again, the posterior odds means that for messages that include the word 'million', there are on the average 5.1 spam messages for every ham message. Or to use whole numbers, there are 51 spam messages for every 10 ham messages. The probability value is therefore 51 / (51+10) = 51/61, or approximately 83.6 %.
+
+To handle the rest of the words in a message, we can use exactly the same procedure. The prosterior odds after one word, which you calculated in the previous exercise, will become the prior for the next word, and so on.
+
+### exercise13: full spam filter
+Now use the naive Bayes method to calculate the posterior odds for spam given the message "million dollars adclick conferences".
+<br>You should again start with the prior odds 1:1, and then multiply the odds repeatedly by the likelihood ratios for each of the four words. Notice taht the likelihood ratios are tabulated above for your reference (these are the numbers 5.1, 0.8, and so on).
+<br>**Your task**: Express the result as psoterior odds without any rounding of the result. You may take a look at the solution of the previous exercise for help.
+
+65.1168: Correct. We start in the same way as the previous exercise. Multiplying the prior odds by the likelihood ratio 5.1 (for the word 'million') gives posterior odds 5.1. Next we'll simply keep multiplying the odds by the likelihood ratios for the rest of the message. The likelihood ratios can be found in the table above: 0.8 ('dollars'), 53.2 ('adclick'), and 0.3 ('conference'). The product of all these numbers equals 1:1 × 5.1 × 0.8 × 53.2 × 0.3 = 65.1168. This means that for messages that include all these four words, there are on the average about 65 spam messages for each ham message, or about 651 spam messages for every 10 ham messages. If we wanted to get the probability value (which was not asked), it is about 651 / (651+10) = 651 / 661 or approximately 98.5 %. This message would probably end up in your junk mail folder.
+
+Hooray! You have now mastered a powerful technique used every day in a wide range of real-world AI applications, the naive Bayes classifier. Even if you had to skip some of the technicalities, you should try to make sure you understood the basic principles of applying probabilities to update beliefs. As we discussed in the beginning of this chapterm the main advantage of probabilistic reasoning is the ability to handle uncertain and conflicting evidence. Using examples in medical diagnosis and spam filtering, we demonstrated how this works in practice.
+## Recap
+<h3>After completing chapter03 you should be able to:</h3>
+
+- Express probabilities in terms of natural requencies
+- Apply the Bayes rule to infer in simple scenarios
+- Explain the base-rate fallacy and avoid it by applying Bayesian reasoning.
 
 # Chapter 04: Machine Learning
 
