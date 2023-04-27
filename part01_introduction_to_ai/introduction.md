@@ -687,6 +687,24 @@ Yet another example of unsupervied learning can be termed **generative modeling*
 <br>We will return to GANs and the implications of being able to produce high-quality artifical image content a bit later in the course, but next we will take a closer look at supervised learning and discuss some specific methods in more detail.
 
 ## II. The nearest neighbor classifier
+
+<h3>The nearest neighbor classifier is among the simplest possible classifiers. When given an item to classify, it finds the training data item that is most similar to the new item, and outputs its label. An example given is the folowing diagram.</h3>
+
+![](images/10_1.svg)
+
+In the above diagram, we show a collection of training data items, some of which belong to one class (green) and other to another class (blue). In addition, there are two test data items, the stars, which we are going to classify using the nearest neighbor method. 
+<br>The two test items are both classified in the "green" class because their nearest neighbors are both "green" class because their nearest neighbors are both green (see diagram (b) above).
+<br>The possition of the points in the plot represents in some way the properties of the items. Since we draw the diagram on a flat two-dimensional surface - you can move in two independent directions: up-down and left-right - the items have two properties that we use for comparison. Imagine for example representing patients at a clinic in terms of their age and blood-sugar level. but the above diagram should be taken just as a visual  tool to illustrate the general idea, which is to relate the class values to similarity or proximity (nearness). THe general idea is by no means restricted into two dimensions and the nearest neighbor classifier can easily applied to items that are characterized by many more properties than two.
+
+### What do we mean by nearest?
+
+An interesting questin related (among other things) the nearest neighbor classifier is the definition of distance or similarity between instances. In the illustration above, we tacitly assumed that the standard geometric distance, technically called the Euclidean distance, is used. This simply means taht if the points are drawn on a piece of paper (or displayed on your screen), you can measure the distance between any two items by pulling a piece of thread straight from one to the other and measuring the length.
+> <h3>Defining nearest</h3>
+>Using the geometric distance to decide which is the nearest item may not always be reasonable or even possible: the type of the input may, for example, be text, where it is not clear how the items are drawn in a geometric representation and how distances should be measured. You should therefore shoose the distance metric on a case-by-base basis.
+The MNISt digit recoginition case, one common way to measure image similarity, is to count pixel-by-pixel matches. In other words, we compare the pixels in the top-left corner of each image to one another and if the more similar color (shade of gray) they are, the more similar the two images are. We also compare the pixels in the bottom-right corner of each image, and all pixels inbetween. This technique is quite sensitive to shoifting or scaling the images: if we take an image of a "1" and shof it ever so slightly either left or right, the outcome is that the two images (before and after the shift) are very different because the black pixels are in different positions in the two images. Fortunately, the MNIST data hs been preprocessed by centering the images so that the problem is alleviated.
+
+![](images/10_2.svg)
+
 ## III. Regression
 
 # Chapter 05: Neural networks
