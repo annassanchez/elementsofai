@@ -711,6 +711,40 @@ A typical example of an application of the nearest neighbor algorithm is predict
 <br>What current recommendation systems use instead of the manually entered metadata, is something called collaborative filtering. The collaborative aspect of it is that is used other users' data to predict your preferences. The word "filter" refers to the fact that you will be only recommended content that passes through a filter: content that you are likely to enjoy will pass, other content will not (these kinds if filters may lead to the so called filter bubbles, which we mentioned in Chapter 1. We will return to them later).
 <br>Now let's say that other users who have listened to 80s music enjoy the new release and keep listening to it again and again. THe system will identify the similar past behavior that you and other 80s disco fanatics share, and since other users like you enjoy the release, the system will predict that you will too. Hence it will show up at the top of your recommendation list. In an alternative reality, maybe the added song is not so great and other users with similar past behavior as yours don't really likeit. In that case, the sustem wouldn't botherrecommending it to you or at lesast it wouldn't be at the top of the list of recommendations for you.
 <br>The following exercises will illustrate this idea.
+### exercise 14: customers who bought similar products
+In this exercise, we will build a simple recommendation system for an onlime shopping application where the users' purchase history is recorded and used to predict which products is likely to buy next.
+<br>We have data from six users. For each user, we have recorded their recent shopping history of four items and the item they bought after buying these four items:
+
+| User | Shopping history |  |  |  | Purchase |
+|---|---|---|---|---|---|
+| Sanni | boxing gloves | Mody Dick (novel) | headphones | sunglasses | coffee beans |
+| Jouni | t-shirt | coffe beans | coffee maker | coffee beans | coffee beans |
+| Janina | sunglasses | sneakers | t-shirt | sneakers | ragg wool socks |
+| Henrik | 2001: A Space odyssey (dvd) | headphones | t-shirt | boxing gloves | flip flops |
+| Ville | t-shirt | flip flops | sunglasses | Moby Dick (novel) | sunscreen |
+| Teemu | Moby Dick (novel) | coffee beans | 2001: A SpaceOdyssey (dvd) | headphones | coffee beans |
+
+The most recent purchase is the one in the rightmost column, so for example, after buying a t-shirt, flip flops, sunglasses, and Moby Dick (novel), Ville bought sunscreen. Our hypothesis is that after buying similar items, other users are also likely to buy sunscreen.
+<br>To apply the nearest neighbor method, we need to define what we mean by nearest. This can be done in many different ways, some of which work better than others. Let's use the shopping history to define the similarity ("nearness") by counting how many of the items have been purchased by both users.
+<br>For example, users Ville and Hwendrik have both bought a t-shirt, so their similarity is 1. Note that flip flops doesn't count because we don't include the most recent purchase when calculating the similarity -- it is reserved for another purpose.
+<br>Our task is to predict the next purchase of customer Travis who has bought the following products:
+
+| User | Shopping History |  |  |  | Purchase |
+|---|---|---|---|---|---|
+| Travis | green tea | t-shirt | sunglasses | flip flops | ? |
+
+You can think of Travis being our test data, and the above six users make our training data.
+<br>**Proceed as follows:**
+<br>1. Calculate the similarity of Travis relative to the six users in the training data (done by adding together the number of similar purchases by the users).
+<br>2. Having calculated the similarities, identify the users who is most similar to Travis by selecting the largest of the calculated similarities.
+<br>3. Predict what Travis is likely to purchase next by looking at the most recent purchase (the rightmost column in the table) of the most similar form the previous step.
+<br>Who is the most similar to Travis? Ville
+<br>What is the predicted purchase for Travis? Sunscreen
+![](images/10_3.svg)
+<br>In the above example, we only had six users' data and our was probably very unreliable. However, online shopping sites often have millions of users, and the amount if data they produce is massive. In many cases, there are a horde of users whose past behavior is very similar to yours, and whose purchase history gives a pretty good indication of your interests.
+<br>These predictions can also be self-fulfilling prophecies in the sense that you are more likely to buy a product if it is recommended to you by the system, which makes it tricky to evaluate how well they actually work. The same kind of recommendation systems are also used to recommend music, movies, news, and social media content to users. In the context of news and social media, filters created by such systems can lead to filter bublles.
+### exercise 15: filter bubbles
+A discussed above, recommending news or social media content that a user is likely to 
 
 ## III. Regression
 
