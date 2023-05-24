@@ -757,6 +757,46 @@ Another way to counteract this phenomenon, while still benefiting from algorithm
 Additionally, it is important to develop critical thinking skills and evaluate the filtered information you receive. Consider whether it represents the actual reality or if it is a partial point of view. By questioning and analyzing the information, you can gain a more comprehensive understanding of various topics and avoid being solely influenced by the filter bubble effect.
 
 ## III. Regression
+<h3>Our main learning objective in this section is another nice example of supervised learning methods, and almost as simple as the nearest neighbor classifier too: linear regression. We'll introduce its close cousin, logistic regression as well.</h3>
+
+> <h3>The difference between classification and regression</h3>
+>There is a small but important difference in the kind of predictions that we should produce in different scnarios. WHile for example the nearest neighbor classifier chooses a class label for any item out of a given set of alternatives (like spam/ham, or 0,1,2,...,9), linear regression produces a numerical prediction that is not constrained to be an integer (a whole number as supposed to something like 3.14). So linear regression is better suited in situations where the output variable can be any number like the price of a product, the distance to an obstacle, the box-office revenue of the next Star Wars movie, and so on.
+
+The basic idea in linear regression is to add up the effects of each of the feature variables to produce the predicted value. The technical term for the adding up process is _linear combination_. The idea is very straightforward, and it can be illustrated by your shopping bill.
+
+><h3>Thinking of linear regression as a shopping bill</h3>
+>Suppose you go to the grocery store and buy 2.5 kg of tomatoes, 1.0 kg of carrots, and two bottles of milk. If the price of potatoes is 2€/kg, the price of carrots is 4€/kg and a bottle of milk costs 3€, then the bill, calculated by the cashier, totals 2.5*2€ + 1.0*4€ + 2*3€ = 15€. In linear regression, the amount of potatoes, carrots, and milk are inputs in the data. THe output is the cost of your shopping, which clearly depends on both price and how much of each product you buy.
+
+The word linear means that the increase in the output when one input feature is increased by some fixed amount is always the same. In other words, wheneve ryou add, say, two kilos of carrots into your  shopping basket, the bill goes up 8€. When you add another two kilos, the bill goes up another 8€, and if you add half as much, 1kg, the bill goes up exactly half as much, 4€.
+
+><h3>Coefficients or weights</h3>
+>In linear regression terminology, the prices od the different products would be called coefficients or weights (this may appear confusing since we measured the amount of potatoes and carrots by weight, but do not let yourself be tricked by this). One of the main advantages of linear regression is that is its easy interpretability: the learned wights may in fact be more interesting than the predicted outputs.
+
+>For example, when we use linear regression to predict the life expectancy, the weight of smoking (cigarettes per day) is about minus half a year, meaning that smoking one cigarette per day takes you on the average half a year closer to termination. Likewise, the weight of vegetable consumption (handful of vegetables per day) has wight plus one yeear, so eating a handful of greens evey day gives you on the average one more year.
+
+### exercise016: linear regression
+Suppose that an extensive study is carried out, and it is found that in a particular country, the life expectancy (the average number of years that people live) among non-smoking women who don't eat any vegetables is 80 years. Suppose further that on the average, men live 5 years less. Also take the numbers mentioned above: every cigarette per day reduces the life expectancy by half a year, and a handful of veggies per day increases it by one year.
+
+Calculate the life expectancies for the following example cases:
+
+For example, the first case is a male (subtract 5 years), smokes 8 cigarettes per day (subtract 8 * 0.5 = 4 years), and eats two handfuls of veggies per day (add 2 * 1 = 2 years), so the predicted life expectancy is 80 - 5 - 4 + 2 = 72 years.
+
+|Gender |	Smoking (cigarettes per day)	|Vegetables (handfuls per day)	| Life expectancy (years) |
+| -- | -- | -- | -- |
+| male | 8 |	2 |	73 |
+| male | 0 |	6 |	A |
+| female |	16 | 	1 |	B |
+| female |	0 |	4 |	C |
+
+**Your task**: Enter the correct value as an integer (whole number) for the missing sections A, B, and C above.
+
+A - 81: Correct. A: 80 - 5 + 6 = 81
+
+B - 73: Correct. 80 - 8 + 1 = 73
+
+C - 84: Correct. 80 + 4 = 84
+
+In the above exrecise, the life expectancy of non-smoking, veggie-hating women, 80 years, was the starting point for the calculation. The technical term for the starting point is the **intercept**. We will return to this below when we discuss how to learn linear regression models from data.
 
 # Chapter 05: Neural networks
 
