@@ -798,6 +798,29 @@ C - 84: Correct. 80 + 4 = 84
 
 In the above exrecise, the life expectancy of non-smoking, veggie-hating women, 80 years, was the starting point for the calculation. The technical term for the starting point is the **intercept**. We will return to this below when we discuss how to learn linear regression models from data.
 
+### Learning linear regression
+
+Above, we discussed how predictions areobtained from linear regression when both the weights and the input features are known. So we aregiven the inputs and the weight, and we can produce the predicted output.
+
+When we are given the inputs and the outputs for a number of items, we can find the weights such as the predicted output matches the actual output as well as possible. This is the task solved by machine learning.
+
+> <h3>Example</h3>
+>Continuing the shopping analogy, suppose we were given of a number of shopping baskets and the total bill for each of them, and we were asked to figure out the price of each of the products (potatoes, carrots, and so on). From one basket, say 1kg of sirloin steak, 2kg of carrots, and a bottle of CHianti, even if we knew that the total bill is 35€, we couldn't determine the prices because there are many sets of prices that will yield the same total bill. With many baskets, however, we will usually be able to solve the problem.
+
+But the problem is made harder byt the fact that in the real world, the actual output isn't always fully determined by the input, becasue of varius factors that introduce uncertainty or "noise" into the process. You can think of shopping at a bazaar where the prices for any given product may vary from time to time, or a restaurant where the final damage includes a variable amount of tip. In such situations, we can estimate the prices but only with some limited accuracy.
+
+Finding the weights that optimize the match between the predicted and the actual outputs in the training data is a classical statistical problem dating back to the 1800s, and it can be easily even for massive data sets.
+
+We will not go into the details of the actual weight-fining algorithms, such as the classical least squares technique, simple as they are. However, you can get a fell of finding trends in data in the following exercises.
+
+### Visualizing linear regression
+
+A good way to get a fell for what linear regression can tell us is to draw a chart containing our data and our regression results. As a simple toy example our data set has one variable, the number of cups of coffee and employee drinks per dar, and the number of lines of code written er day by that employee as the output. This is not a real data set as obviously there are other factors having an effect on the productivity of an employee other than coffee that interact in complex ways. The increase in productivity by increasing the amount of coffee will also hold only to a certain point after it jitters distract too much.
+
+![](images/10_4.PNG)
+
+When we preesent our data in the chart above as points where one point presents one employee, we can see that there is obviouslyu a trend that drinking more coffee results in more lines of code being written (recall taht this is completely made-up data). From this data set we can learn the coefficient, or the weight, related to coffee consumption, and by eye we can already say that it seems to be somewhere close to five, since for each cup of coffee consumed the number oflines programmed seems to go up roughly by five. For example, employees who drink around two cups of coffee per day seem to produce around 20 lines ofcode per day, and similarly at four cups of coffee, the amount of lines produce is around 30.
+
 # Chapter 05: Neural networks
 
 # Chapter 06: Implications
