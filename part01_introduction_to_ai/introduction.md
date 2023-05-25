@@ -821,6 +821,57 @@ A good way to get a fell for what linear regression can tell us is to draw a cha
 
 When we preesent our data in the chart above as points where one point presents one employee, we can see that there is obviouslyu a trend that drinking more coffee results in more lines of code being written (recall taht this is completely made-up data). From this data set we can learn the coefficient, or the weight, related to coffee consumption, and by eye we can already say that it seems to be somewhere close to five, since for each cup of coffee consumed the number oflines programmed seems to go up roughly by five. For example, employees who drink around two cups of coffee per day seem to produce around 20 lines ofcode per day, and similarly at four cups of coffee, the amount of lines produce is around 30.
 
+It can also be noted that employees who do not drink coffee at all also produce code, and is hown by the graph to be about ten lines. This number is the intercept term that we mentioned earlier. The intercept is another parameter in the model just like the weights are, that can be learned from the data. Just as in the life expectancy example it can be thought od as the starting point of our calculations before we have added in the effects of the input variable, or variables if we have more than one, be it coffee cups in this example, or cigarettes and vegetables in the previous one.
+
+The line in the chart represents our predicted outcome, where we have estimated the intercept and the coefficient by using an actual liner regression technique called least squares. This line can be used to predict the number of lines produced when the input is the number of cups of coffee. Note that we can obtain a prediction even if we allor only partial cups (like half, 1/4 cups, and so on).
+
+### exercise 17: life expectancy and education (part 1 of 2)
+Let's study the link between the total number of years spent in school (including everything between preschool and university) and like expectancy. Here is data from three different countries displayed in a figure represented by dots:
+
+![](images/10_5.jpeg) 
+
+We have once country where the average number of years in school is 10 and life expectancy is 57 years, another country where the average number of years in school is 13 and life expectancy is 53 years, and a third country where the average number of years in school is 20 and life expectancy is 80 years.
+
+You can drag the end points of the solid line to position the line in such way that it follows the trend of the data points. Note that you will not be able to get the line fit perfectly with the data points, and this is fine: some of the data points will lie above the line, and some below it. The most important part is that the line describes the overall trend.
+
+After you have positioned the line you can use it to predict the life expectancy.
+
+Given the data, what can you tell about the life expectancy of people who have 15 years of education? Important: Notice that even if you can obtain a specific prediction, down to a fraction of a year, by adjusting the line, you may not necessarily be able to give a confident prediction. Take the limited amount of data into account when giving your answer.
+
+It is probably less than 90 - Correct. The few data points that we have make it impossible say almost anything about the life expectancy only based on the data. Of course, one can know a great deal about life expectancy from other sources but the data in the above chart is insufficient to do so. The first choice is clearly stating too much. While the intervals in the second and the third choice are likely to be valid, the word 'certainly' makes them unjustified. There is a chance, greater than zero, that the value turns out to be, for example, greater than 70. Thus the only choice that we can be comfortable with is the fourth one.
+
+### exercise 18: life expectancy and education (part 2 of 2)
+
+In the previous exercise, we only had data from three countries. The full data set consists of data from 14 different countries, presented here in a graph:
+
+![](images/10_6.jpeg)
+
+Based on this data, would your prediction about the life expectancy of people with 15 years of education change? If so, why?
+
+Which of the following options would bes match your estimate of the life expectancy for people with 15 years of education? Choose the most specific option that you think is justified by fitting the straight line model to the above data.
+
+Probably between 50 and 90 years - Correct: The first choice would clearly be an odd estimate since the data strongly suggest that very few countries have life expectancy less than 50, and none of the data points with more than 12 years of education fall below 50. We can't be sure, of course, but life expectancy between 45 and 50 years would in this case be highly unexpected. The second choice is correct because it fits the general trend, and all data points with more than 12 years of education fall within this interval. The interval 69 to 71 years in the third choice could well include the actual value, but based on the above data, it would be too bold to claim to know the outcome with such high accuracy. The interval 15 to 150 years of the fourth choice would almost certainly include the actual value, but we think that it would be a poor summary of what we can learn from the data for the reason that it is too vague.
+
+It should be pointed oyt that studies like those used in the above exercises cannot identify causal relationships. In other ords, from this data alone, it is impossible to say whether studying actually increases life expectancy through a better-informed and healthier life-style or other mechanisms, or whether the apparent association between life expectancy and education is due to underlying factors that affects both. It is likely that, for example, in countries where people tend to be highly educated, nutrition, healthcare, and safety are also better, which increases life expectancy. With this kind of simple analysis, we can only identify associations, which can nevertheless be useful for prediction.
+
+### Machine learning applications of linear regression
+
+Linear reegression is truly the workhorse of many AI and data science applications. It has its limits but they are often compensated by its simplicity, interpretability and efficiency. Linear regression has been succesfully used in the following problems to give a few examples:
+
+- prediction of click rates in online advertising.
+- prediction of retail demand for products
+- predicion of box-pffice revenue of Hollywood movies
+- prediction of software cost
+- prediction of insurance cost
+- prediction of crimes rates
+- prediction of real estate prices
+
+### Could we use regression to predict labels?
+
+As we discussed above, linear regression and the neares neighbot method produce different kinds of predictions. Linear regression outputs numerical outputs while the nearest neighbor method produces labels from a fixed set of alternatives ("classes").
+
+Where linear regression excels compared to nearest neighbors is interpretability. What do we mean by this? You could say that in a way, the nearest neighbor method and any single prediction that it produces are easy to interpret: it's just the nearest training data element! This is true, but when it comes to the interpretability of the learned model, there is a clear difference. Interpreting the trained model in the nearest neighbors in a similar fashion as the weights in linear regression is impossible: the learned model is basically the whole data, and it is usually way too big and complex to provide us with much insight. So what if we'd like to have a method that produces the same kind of outputs as the nearest neighbor, labels, but is interpretable like linear regression?
+
 # Chapter 05: Neural networks
 
 # Chapter 06: Implications
