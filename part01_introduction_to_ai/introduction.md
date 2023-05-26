@@ -872,6 +872,73 @@ As we discussed above, linear regression and the neares neighbot method produce 
 
 Where linear regression excels compared to nearest neighbors is interpretability. What do we mean by this? You could say that in a way, the nearest neighbor method and any single prediction that it produces are easy to interpret: it's just the nearest training data element! This is true, but when it comes to the interpretability of the learned model, there is a clear difference. Interpreting the trained model in the nearest neighbors in a similar fashion as the weights in linear regression is impossible: the learned model is basically the whole data, and it is usually way too big and complex to provide us with much insight. So what if we'd like to have a method that produces the same kind of outputs as the nearest neighbor, labels, but is interpretable like linear regression?
 
+### Logistic regression to the rescue!
+
+Whell there is good news for you: wwe can turn the linear regression method's outputs into predictions about labels. The technique for doing this is called logistic regression. We will not go into the technicalities, suffice to say that in the simplest case, we take the output from linear regression, ehich is a number, and predict one label A if the output is greater than sqro, and another label B if the output is less than or equal to zero. Actually, instead og just predicting one class or another, logistic regression can also give us a measure of uncertainty of the prediction. So if we are predicting whether a customer will buy a new smartphone this year, we can get a prediction that customer A will buy a phoine with probability 90%, but for another, less predictable customer, we can get a prediction that will *not* buy a phone with 55% probability (or in other words, that they will buy a pphone with 45% probability).
+
+It is also possible to use the same trick to obtain predictions over more than two possible labels, so instead of always predicting either yes or now (buy a new phone or not, fake news or real news, and so forth), we can use logistic regression to identify, for example,m handwritten digits, in ehich case there are ten possible labels.
+
+<h4>An example of logistic regression</h4>
+
+Let's suppose that we collect data of students taking an introductionary couse in cookery. In addition to the basic information such as the strudent ID, name, and so on, we also ask the students to report how many hours they studied for the exam (however you study for a cookery exam, probably cooking?) - and hope that they are more or less honest in their reports. After the exam, we will know whether each student passed the course or not. Some data points are presented below:
+Student ID | Hours studied | Pass/fail
+-| - | - 
+24 | 15 | Pass
+41 | 9.5 | Pass
+58 | 2 | Fail
+101 | 5 | Fail
+103 | 6.5 | Fail
+215 | 6 | Pass
+
+Based on the table, what kind of conclussion could you draw between the hours studied and passing the exam? We could think that if we have data from hundreds of students, maybe we could see the amount needed to study in order to pass the course. We can present this data in a chart as you can see below:
+
+> ### exercise 19: logistic regression
+>
+> ![](images/10_7.PNG)
+>
+>Each dot on the figure corresponds to one student. On the bottom of the figure we have the scale for how many houws the student studied for the exam, and the students who passed the exam are showed as dots at the top of the chart, and the ones who failed are shown on the bottom. We'll use the scale on the left to indicate the predicted probability of passing, which we'll get from the logistic regression model as we explain just below. Based on this figure, you can see roughly that students who spent longer studying had better chances of passing the course. Especially the extreme cases are intuitive: with less than an hour's work, it is very hard to pass the course, but with a lot of work, most will be successful. But what about those taht spend time studying somewhere inbetween the extrems? If you study for 6 hours, what are your chances of passing?
+>
+>We can quantify the probability of passing using a logistic regression. The curve in the figure can be interpreted as the probability of passing: for example, after studying for five hours, the probability of passing is a little over 20%. We will not want to go into details on how to obtain hte curve, but it will be a similar to how we learned the weights in linear regression. 
+>
+>If you have an 80% chance of passing a university exam, based on the above figure, how many hour should you approximately study for?
+>
+>10-11 Hours - Correct. The other answers give roughly a 30%, a 50%, and a 70% chance of passing respectively. To have an 80% chance of passing, you should study for around 10-11 hours.
+
+Logistic regression is also used in a great variety of real-world AI applications such as predicting financial risks, in medical studies and so on. However, like linear regression, it is also constrained by the linearity property and we need many other methods in our toolbox. We will return to the linearity issue later when we discuss neural networks.
+
+### The limits of machine learning
+
+To summarize, machine learning is a very powerful tool for building AI applications. In addition to the nearest neighbor method, linear regression, and logistic regression, there are literally hundreds, if not thousands, of different machine learning techniques, buy they all boil down the same thing: trying to extract patterns and dependencies from data and using them either to gain understanding of a phenomenon or to predict future outcomes.
+
+Machine learning can be a cery hard problem and we can't usually achieve a perfect method that would always produce the correct label. However, in most cases, a good but not perfect prediction is still better than none. Sometimes we may be able to produce better predictions by ourselves but we still prefer to use machine learning because the machine will make its predictions faster and it will also keep churning out predictions without getting tired. Good examples are recommendation systems that need to predict what musci, what videos, or what ads are more likely to be of interest to you.
+
+The factors that affect how good a result we can achieve include:
+
+- The hardness of the task: in handwritten digit recognition, if the digits are written very sloppily, even a human can't always guess correctly what the writer intended.
+- The machine learning method: some methods are far better for a particular task than others.
+- The amount of training data: from only a few examples, it is impossible to obtain a good classifer.
+- The quality of data.
+
+> <h3>Data quality matters</h3>
+>
+> In the beginning of this chapter, we emphasizedthe importance of having enough data and the risks of overfitting. Another equally important factor is the **quality** of the data. In order to build a model that generalizes well to data outside of the training data, the training data needs to contain enough information that tells you what the image given to the algorithm is about, and you have trained it only on pictures of dogs and cats, it will assign everything it sees as either a dog or a cat. This would make sense if the algorithm is used in an enviroment where it will only see cats and dogs, but not if it is expected to see boats, cars, and flowers as well.
+>
+> We'll return to potential problems caused by "biased" data.
+
+It is also important to emphasize that different machine learning methods are suitable for different tasks. Thus, there is no single best method for all problems ("one algorithm to rule them all..."). Fortunately, one can try out a large number of different methods and see which one of them works best in the problem at hand.
+
+This leads us to a point that is very important but often overlooked in practice: what it means to work better. In the digit recognition taks, a good method would of course produce the correct label most of the time. We can measure this by the classification error: the fraction of cases where our classifier outputs the wrong class. In predicting apartment prics, the quality mneasure is typically something like the difference between the predicted price and the final price for which the apartment is sold. In amny real-life applications, it is also worse to err in one direction than in another: setting the price too high may delay the process by months, but setting the price too low will mean less money for the seller. And to take yet another example, failing to detect a pedestrian in fron of a car is a far worse error than falsely detecting one when there is none.
+
+As mentioned above, we can't usually achieve zero error, but perhaps we will be happy with error less than 1 in 100 (or 1%). This too depends on the application: you wouldn't be happy to have only 99% safe cars on the streets, but being able to predict whether you'll like a bew song with that accuracy may be more than enough for a pleasant listening experience. Keeping the actual goal in mind at all times helps us make sure that we create actual added value.
+
+## Recap
+
+<h3>After completing chapter 4 you should be able to:</h3>
+
+- Explain why machine learning techniques are used
+- Distingish between unsupervised and supervised machine learning scenarios
+- Explain the principles of three supervised classification methods: the nearest neighbor method, linear regression, and logistic regression.
+
 # Chapter 05: Neural networks
 
 # Chapter 06: Implications
