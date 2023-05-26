@@ -19,11 +19,15 @@
 
 [# chapter 04: machine learning](#chapter-04-machine-learning)
 
-[I. Thet types of machine learning](#the-types-of-machine-learning)
+[I. The types of machine learning](#the-types-of-machine-learning)
 <br>[II. The nearest neighbor classifier](#the-nearest-neighbor-classifier)
 <br>[III. Regression](#regression)
 
 [# chapter 05: neural networks](#chapter-05-neural-networks)
+
+[I. Neural network basics](#i-neural-network-basics)
+<br>[II. How neural networks are built](#ii-how-neural-networks-are-built)
+<br>[III. Advanced neural network techniques](#iii-advanced-neural-network-techniques)
 
 [# chapter 06: implications](#chapter-06-implications)
 
@@ -940,5 +944,36 @@ As mentioned above, we can't usually achieve zero error, but perhaps we will be 
 - Explain the principles of three supervised classification methods: the nearest neighbor method, linear regression, and logistic regression.
 
 # Chapter 05: Neural networks
+
+<h3>Areas like natural language and image processing have traditionally been sore points of AI. Neural networks and deep learning are being used to achieve, significant improvements in these areas.</h3>
+
+## I. Neural network basics
+
+<h3>Our next topic, deep learning and neural networks tend to attract more interest than many of the other topics.</h3>
+
+One of the reasons for the interest is the hope to understand our own mind, which emerges from neural processing in our brain. ANother reason is the advances in machine learning achieved within the recent years by combining massive data sets and deep learning techniques.
+
+### What are neural networks?
+
+To better understand the whole, we will start by discussing the individual units that make it up. A neural network can mean either a "real" biological neural network such as the one in your brain, or an artificial neural network simulated in a computer.
+
+> <h3>Deep Learning</h3>
+>
+> Deep learning refers to certain kinds of machine learnign 
+>
+> Deep learning refers to certain kinds of machine learnign techniques where several "layers" of simple processing units are connected in a network so that the input to the system is passed through each one of them in turn. This architecture has been inspired by the processing of visual information in the brain coming through the eyes and captured by the retina. This depth allows the network to learn more complex structures without requiring unrealistically large amounts of data.
+>
+> <h3>Neurons, cell bodies, and signals</h3>
+>
+>A neural network, either biological and artificial, consists of a large number of simple units, neurons, that receive and transit signals to each other. The neurons are very simple processors of information, consistning of a cell body and wires that connect the neurons to each other. Most of the time, they do nothing but sit still and watch for signals coming in through the wires.
+>
+> <h3>Dentrites, axons, and synapses</h3>
+> In the biological lingo, we call the wires that provide the input to the neuronal dendrites. Sometimes, depending on the incoming signals, the neuron may fire and send a signal out for the other neurons to receive. The wire that transmits the outgoing signal is called an axon. Each axon may be connected to one or more dentrites at intersections that are called synapses.
+
+Isolated from its fellow-neurons, a single neuron is quite unimpressive, and capable of only a very restricted set of behaviors. When connected to each other, however, the system resulting from their concerted action can become extremely complex. To find evidence of this, look no further than (to use legal jargon) "Exhibit A": your brain! The behaviour of the system is determined by the ways in which the neurons are wired together. Each neacts to the incoming signals in a specific signals in a specific way that can also adapt over time. This adaptation is known to be the key to functions such as memory and learning. 
+
+## II. How neural networks are built
+
+## III. Advanced neural network techniques
 
 # Chapter 06: Implications
