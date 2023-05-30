@@ -972,6 +972,52 @@ To better understand the whole, we will start by discussing the individual units
 
 Isolated from its fellow-neurons, a single neuron is quite unimpressive, and capable of only a very restricted set of behaviors. When connected to each other, however, the system resulting from their concerted action can become extremely complex. To find evidence of this, look no further than (to use legal jargon) "Exhibit A": your brain! The behaviour of the system is determined by the ways in which the neurons are wired together. Each neacts to the incoming signals in a specific signals in a specific way that can also adapt over time. This adaptation is known to be the key to functions such as memory and learning. 
 
+### exercise20: elements of a neural network
+
+Label the different components of a neuron into the diagram below. Hint: The input pf the neuron comes from the left and the output goes to the right.
+
+![](images/11_1.svg)
+
+D -> Synapse (connection)
+
+B -> Dentrite
+
+A -> Cell body
+
+C -> Axon (output)
+
+### Why develop artificial neural networks? 
+
+THe purpose of building artificial models of the brain can be neuroscience, the study of the brain and the nervous system in general. It is tempting to think that by mapping the human brain is enough in detail, we can discover the secrets of human and animal cognition and consciousness.
+
+![](images/11_2.svg)
+
+> <h3>Modeling the brain</h3>
+>
+>[The BRAIN initiative](https://www.braininitiative.nih.gov/) led by American neuroscience researchers is pushing forward technologies for imaging, modeling, and simulating the brain at finer and larger scale than before. Some brain research projects are very ambitious in terms of objectives. [The Human Brain Project](https://www.youtube.com/watch?v=JqMpGrM5ECo) promised in 2012 that "the mysteries of the mind can be solved - soon". After years of work, the Human Brain Project was facing questions about when the [billion euros invested by the European Union](https://www.scientificamerican.com/article/why-the-human-brain-project-went-wrong-and-how-to-fix-it/) will deliver what was promised, even though, to be fair some less ambitious milestones have been achieved.
+
+However, ecen while we seem to be almost as far from understanding the mind and consicousness, there are clear milestones that have been achieved in neuroscience. By better understanding of the structure and function of the brain, we are already reaping some concrete rewards. We can, for instance, identify abnormal functioning and try to help the brain avoid them and reinstate normal operation. This can lead to life-changing new medical treatments for epople suffering from neurological disorders: epilepsy, Alzheimer's disease, problems caused by developmental disorders or damage caused by injuries, and so on.
+
+> <h3>Looking to the future: brain computer interfaces</h3>
+>
+>One research direction in neuroscience is brain-computer interfaces that allow interacting with a computer by simply thinking. The current interfaces are very limited and they can be used, for example, to [reconstruct on a very rough level what a person is seeing](), or to [control robotic arms or drones by thought](). Perhaps some day we can actually implement a thought reading machine that allows precie instructions byt currently they belong to science fiction. It is also conceivable that we could feed information into the brain by stimulating it by small electrical pulses. Such stimulation is currently used for theurapeutic purposes. Feeding detailed information such as specific words, ideas, memories, or emotions is at least currently science fiction rather than reality, but obviously we know neither the limits of such technology, nor how hard is to reach them.
+
+We've drifted a little astray from the topic of the ocurse. In fact, another main reason for building artificial networks has little to do with understanding biological systems. It is to use biological systems as an inspiration to build better AI and machine learning techniques. THe idea is very natural: the brain is an amazingly complex information processing system capable of a wide range of intelligent behaviors (plus occasionally some not-so-intelligent ones), and therefore, ti makes sense to look for inspiration in it when we try to create artificially intelligent systems.
+
+Neural networks have been a major trend in AI since the 1960s. We'll return to the waves of popularity in the history of AI in the final part. Currently neural netowrks are again at the very top of the list as deep learning is used to achieve significant improvements in many areas such as natural language and image processing, which have traditionally been sore points of AI.
+
+### What is so special about neural networks?
+
+THe case for neural networks in general as an approach to AI is based on a similar argument as that for logic-based approaches. In the latter case, it was though processes, and in particular, manipulation of symbols representing certain concrete or abstract concepts using logical rules.
+
+The argument for neural networks is that by simulating the lower-level, "subsymbolic" data processing on the level of neurons and neural networks, intelligence will emerge. THis all sounds very reasonable, but keep in mind that in order to build flying machines, we don't build airplanes that flap their wings, or that are made of nomes, muscle, and feather. Likewise, in artificial neural networks, the internal mechanism of the neurons is usually ignored and the artificial neurons are often much more simpler than their natural counterparts. The electro-chemical signaling mechanisms between natural neurons are also mostly ignored in artificial models when the goal is to build AI systems rather than to simulate biological systems.
+
+Compared to how computers traditionally owrk, neural netowrks have certain special features:
+
+1. Neural network ky feature
+
+2. Neural network key feature
+
 ## II. How neural networks are built
 
 ## III. Advanced neural network techniques
