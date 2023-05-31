@@ -31,6 +31,10 @@
 
 [# chapter 06: implications](#chapter-06-implications)
 
+[I. About predicting the future](#i-about-predicting-the-future)
+<br>[II. The societal implications of AI](#ii-the-societal-implications-of-ai)
+<br>[III. Summary](#iii-summary)
+
 # Chapter 01: what is AI?
 ## I. How should we define AI?
 <h3>In our very first section, we'll become familiar qith the concept of AI by looking intro it's definition and some examples.</h3>
@@ -1030,8 +1034,193 @@ Because of these differences, neural networks and traditional computes are suite
 
 ><h3>Weights and inputs</h3>
 >
->The basic artificial neuron model involves a set of adaptive parameters, called weights like in linear and logistic regression. Just like in regression, these weights are used as multipliers on the inputs of the neuron, which are added up. The sum of the w
+>The basic artificial neuron model involves a set of adaptive parameters, called weights like in linear and logistic regression. Just like in regression, these weights are used as multipliers on the inputs of the neuron, which are added up. The sum of the weights times the inputs is called the linear combination of the inputs. You can probably recall the shopping bill analogy: you multiply the amount of each item by its price per unit and add up to get the total.
+
+If we have a neuron with six inputs (analogous to the amounts of the six shopping items: potatoes, carrots, and so on), input1, input2, input3, input4, input5, and input6, we also need six weights. The weights are analogous to the prices of the items. We'll call them weight1, weight2, weight3, weight4, weight5, and weight6. In addition, we'll usually want to include an intercept term like we did in linear regression. This can be thought of as fixed additional charge due to processing a credit card payment, for a example.
+
+We can then calculate the linear combination like this: linear combination = intercept + weight1 * input1 + ... + wight6 * input6 (where the ... is a shorthand notation meaning that the sum inclue all the terms from 1 to 6).
+
+With some example numbers we could then get:
+
+> 10.0 + 5.4 * 8 + (-10.2) * 5 + (-0.1) * 22 + 101.4 * (-5) + 0.0 * 2 + 12.0 * (-3) = -543.0
+
+### exercise21: weights and input
+
+In this exercise, consider the following expression that has both weights and inputs: 10.0 + 5.4 * 8 + (-10.2) * 5 + (-0.1) * 22 + 101.4 * (-5) + 0.0 * 2 + 12.0 * (-3) = -543.0
+
+- What is the intercept term in the expression? B -> 10.0: Correct. The intercept is the number in the equation that is not multiplied by any variable.
+
+- What are the inputs? A -> 8, 5, 22, -5, 2, -3: Correct. Compare the equation in the exercise to the one above in the definition: we defined the linear combination to be intercept + weights x inputs, so the inputs are the second numbers in the multiplication.
+
+- Which of the inputs needs to be changed the least to increase the output by a certain amount? D -> fourth: Correct. The fourth weight is the largest one. To increase the output by some predetermined amount, the fourth input would have to be increased the least.
+
+- What happens when the fifth input is incremented by one? A -> nohting (C -> The output increases by two) Incorrect. The weight for the fifth input is 0.0, which means that no matter what value the fifth input has, its effect on the linear combination is always zero.
+
+The weights are almost learned form data using the same ideas as in linear or logistic regression, as discussed previously. But before we discuss this in more detail, we'll introduce another important stage that a neuron completes before it sends out an output signal.
+
+### Activations and outputs
+
+Once the linear combinatiosn has been computed, the neuron does one more operation. It takes the linear combination and puts it through a so-called activation function. Typical examples of the activation function include:
+
+- identity function: do nothing and just output the linear combination
+
+- step function: if the value of the linear combination is greater than zero, send a pusle (ON), otherwise fo nothing (OFF).
+
+- sigmoid function: a "soft" version of the step function.
+
+Note that with the first activation fucntion, the identity function, the neuron is exactly the same as linear regression. This is why the identify fucntion, the neuron is exactly the same as linear regression. This is why the identify function is rarely used in neural networks: it leads to nothing new and interesting.
+
+><h3>How neurons activate</h3>
+>
+>Real, biological neurons communicate by sengind out sharp, electrical pulses called "spikes", so that at any given time, their outgoing signal is either on or off (1 or 0). THe step function, imitates this behavior. However, artificial neural networks tend to use activation functions that output a continous numerical activation level at all times, such as the sigmoid function. Thus to use a somewhat awkward figure of speech, real neurons communicate by something similar to the Morse code, whereas artificial neurons communicate by adjusting the pitch of their voice as if yodeling.
+
+![](images/12_1.svg)
+
+The output of the neuron, determined by the linear combination and the activation function, can be used to extract a prediction or decision. For example, if the network is designed to identify a stop sign in fornt of a self-driving car, the input can be the pisxels of an image captured by a camera attached in front of the car, and the output can be used to activate a stopping procedure that stops the car before the sign.
+
+Learning or adaptation in the network occurs when the weights are adjusted so as to make the network produce the correct outputs, just like in linear or logisitic regression. Many neural networks are very large, and the largest contain hundreds of billions of wights. Optimizing them all can be daunting task that requires massive amounts of computing power.
+
+### exercise22: Activations and outputs
+
+Below are graphs for three dofferent activations functions with different properties. First we have the sigmoid function, then the steps function, and finally the identity function. IMPORTANT: Nothe the different y-axis (vertical) scale in the identity function chart.
+
+![](images/12_2.jpeg)
+
+![](images/12_3.jpeg)
+
+![](images/12_4.jpg)
+
+Which of the activations described above gives:
+- the highest output for an input of 5? 
+    
+    Identity -> Correct. The identity function will give an output of 5 for an input of 5. The sigmoid will output something very close to 1, and the step function will output exactly 1. 
+
+- the lowest output for an input of -5?
+
+    Identity -> Correct. The identity function will give an output of -5 for an input of -5. The sigmoid will output something very close to 0, and the step function will output exactly 0. 
+
+- the highest output for an input of -2.5?
+
+    Sigmoid -> Correct. For an input of -2.5, the identity function will output -2.5, and the step function will output 0. The sigmoid function will output something that is higher than 0 but lower than 0.1.
+
+### Perception: the mother of all ANNs
+
+The perception is simply a fancy name for the simple neuron model with the step activation function we discussed above. It was among the very first formal models of neural computation and because of its fundamental role in the history of neural networks, it wouldn't be unfair to call it the "mother of all artificial neural networks".
+
+It can be used as a simple classifier in binary classification tasks. A method for learning the weights of the perceptron from data, called the Perceptron algorithm, was introduced by the psychologist Frank Rosenblatt in 1957. We will not study the Perceptron algorithm in detail. Suffice to say that is just about as simple as the nearest neighbor classifier. The basic principle is to feed the network training data one example at a time. Each misclassification to an update in the weight.  
+
+><h3>AI hyperbole</h3>
+>
+>After its discovery, the Perceptron algorithm received a lot of attention, not least because of optimistic statements made by its inventor, Frank Rosenblatt. A classic example AI hyperbole is a New York Times article published on July 8th, 1958: "The Navy revealed the embyro of an electronic computer today that it expects will be able to walk, talk, see, reproduce itself and be conscious of its existence."
+>
+>Please note that neural network enthusiasts are not at all the only ones inclined towards optimism. The rise and fall of the logic-based expert systems approach to AI had all the same hallmark features of an AI-hype and people claimed that the final breakthrough is just a shorth while away. The outcome both in the early 1960s and late 1980s was a collapse in the research funding called an AI Winter.
+
+The history of the debate that eventually lead to almost complete abandoning of the neural network approach in the 1960s for more than two decades is extemly fascinating. The article *[A Sociological Study of the Official History of the Perceptrons Controversy](http://journals.sagepub.com/doi/10.1177/030631296026003005)* by Mikel Olazaran (published in *Social Studies of Science*, 1996) reviews the events from a sociology of science point of view. Reading it today is quite thought provoking. Reading stories about celebrated AI heroes who had develop neural networks algorithms that would soon reach the level of human intelligence and become self-conscious can be compared to some statements made during the current hype. If you take a look at the above article, even if you wouldn't read all of it, it will provide an interesting backgorund to today's news. Consider for example an [article in the MIT Technology Review](https://www.technologyreview.com/s/608911/is-ai-riding-a-one-trick-pony/) published in September 2007, where Jordan Jacobs, co-founder of a multimillion dollar Vecotr institute for AI compares Geoffrey Hinton (a figure-head of the current deep learning boom) to Einstein because of his constributions to development of neural network algorithms in the 1980s and later. Also recall the Human Brain project mentioned in the previous section.
+
+According to Hinton "the fact it doesn't work is just a temporary annoyance" (although according to the article, Hinton is laughing about the above statement, so it's hard to tell how seriours he is about it). The Human Brain project claims to be ["close to a profound leap in our understanding of consciousness"](https://www.humanbrainproject.eu/en/follow-hbp/news/the-quest-for-consciousness/). Doesn't that sound familiar?
+
+Noone really knows the future with certainty, but knowing the track record of earlier announcements of imminent breakthroughs, some critical thinking is advised. We'll retrun to the future of AI in the final chapter, but for now, let's see how artificial neural networks are built.
+
+### Putting neurons together: networks
+
+A single neuron would be way too simple to make decisions and prediction reliably in most real-life applications. To unleash the full potential of neural networks, we can use the output of one neuron as the input of other neurons, whose outputs can be the input to yet other neurons, and so on. The output of the whole network is obtained as the output of a certain subset of the neurons, which are called the output layer. We'll return to this in a bit, after we discussed the way neural networks adapt to preduce different behaviors by learning their paramenters from data.
+
+><h3>Layers</h3>
+>
+>Often the network architecture is composed of layers. The input consists of neurons that get their inputs directly fro mthe data. So for example, in an image recognition task, the input layer would use the pixel values of the input image as the inputs of the input layer. The network typically also has hidden layers that use the other neurons' outputs as their input, and whose output of the whole network. All the neurons on a given layer get inputs from neurons on the previous layer and feed their output to the next.
+
+A classical example of a multiplayer network is the so-called multiplayer perceptron. As we discussed above, Rosenblatt Perceptron algorithm can be used to learn the wights of perceptron. For multilayer perceptron, the corresponding learning problem is way harder and it took a long time before a working solution was discovered. But eventually, one was invented: the backpropagation algorithm led to a revival of neural networks in the late 1980s. It is still at heart of many of the most advanced deep learning solutions.
+
+><h3>Meanwhile in Helsinki...</h3>
+>
+>The path(s) leading to the backrpropagation are rather long and winding. An interesting part of the history is related to the computer science department of the University of Helsinki. About three years after the founding of the department 1967 [a Master's thesis](http://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf) was written by a student called Seppo Linnainmaa. The topic of the thesis was "Cumulative rounding error algorithms as a Taylor approximation of individual rounding errors" (the thesis was wirtten in Finnish, so this is a translation of the actual title "Algoritmin kumulatiivinen pyöristysvirhe yksittäisten pyöristysvirheiden Taylor-kehitelmänä").
+>
+>The automatic differentiation method developed in the thesis was later applied by other researchers to quantify the sensitivity of the output of a multilayer neural network with respect to the individual weights, which is the key idea in backpropagation.
+
+### A simple neural network classifier
+
+To give relatively simple example of using a neural network classifier, we'll consider a task that is very similar to the MNIST digit recognition task, namely classifying images in two classes. We will first create a classifier to classify whether an image shows a cross (x) or a circle (o). Our images are represented here as pixels that are either colored or white and the pixels are arranged in 5 * 5 grid. In this format our images of a cross and a circle (mor like a diamond, to be honest) look like this:
+
+![](images/12_5.png)
+
+In order to build a neural network classifier, we need to formalize the problem in a way where we can solve ir using teh methods we have learned. Our first step is to represent the information in the pixels by numerical values that can be used as the input to a classifier. Let's use 1 if the square is colored, and 0 if it is white. Note that although the symbols in the above graphic are of different color (green and blue), our classifier will ignore the color information and use only the colored/white information. The 25 pixels in the image make the inputs of our classifier.
+
+To make sure that we know which pixel is which in the numerical representation, we can decide to list the pixels in the same order as you'd read text, so row by row from the top, and reading each row from left to right. The first row of the cross, for example, is represented as 1,0,0,0,1; the second row as 0,1,0,1,0, and so on. THe full input for the corss is then: 1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1.
+
+We'll use the basic neuron model where the first step is to compute a linear combination of the inputs. Thus need a weight for each of the input pixels, which means 25 weights in total.
+
+Finally, we use the step activation function. If the linear combination is negative, the neuron activation is zero, which we decide to use to signify a cross. If the linear combination is positive, the neuron is one, which we decide to signify a circle.
+
+Let's try what happens when all weights take the same numerical value, 1. With htis setup, our linear combination for the cross image will be 9 (9 colored pixels, so 9 * 1, and 16 white pixels, 16 * 0), and for the circle image it will be 8 (8 colored pixels, 8 * 1 and 17 white pixels, 17 * 0). In other words, tthe linear combination is positive for both images and they are thus classified as circles. Not a very good result given that there are only two images to classify.
+
+To improve the result, we need to adjust the weights in such a way that the linear combination will be negative for a cross and positive for a circle. If we think about what differentiates images of crosses and circles, we can see that circles have no colred pisxels in the center of the image, whereas crosses do. Likewise, the pixels at the corners of the image are colored in the cross, but white in the circle.
+
+We can now adjust the weights. There are an infinite number of weights that fo the job. For example, assign weight -1 to the center pixel (the 13th pixel), and weight 1 to the pixels in the middle of each of the four sides of the image, letting all the other weights be 0. Now, for the cross input, the center pixel produce the value -1, while for all the other pixels either the pixel value or the weight is 0, so that -1 is also the total value. This leads to activation 0, and the cross is correctly classified.
+
+How about the circle then? Each of the pixels in the middle of the sides produces the value 1, which males 4 * 1 = 4 in total. For all the other pixels either the pixel value or the weight, so 4 is the total. Since 4 is a positive value, the activation is 1, and the circle is correctly recognized as well.
+
+### Happy or not?
+
+We will now follow similar reasoning to build a classifier for smiley faces. You can assign weights to the input pixels in the image by clicking on them. Clicking once sets the weight to 1, and clicking again sets it to -1. The activation 1 indicates that the image is classified as a happy face. Which can be correct or not, while activation -1 indicates that the iamge is classified as a sad face.
+
+Don't be discouraged by the fact that you will not be able to classify all the smiley faces correctly: it is in fact impossible with our simple classifier! This one important learning objective: sometimes perfect classification just isn't possible because the classifer is too simple. In this case the simple neuron that uses a linear combination of the inputs is too simple for the task. Observe how you can build classifiers that work well in different cases: some classify most of the happy faces correctly while being worse for sad faces, or the other way around.
+
+Can you achieve 6/8 correct for both happy and sad faces?
+
+![](images/12_6.png)
 
 ## III. Advanced neural network techniques
 
+<h4>In the previous section, we have discussed the basic ideas behind most neural network methods: multilayer networks, non-linear activation functions, and learning rules such as the backpropagation algorithm.</h4>
+
+They power almost all modern neural network applications. However, there are some interesting and powerful varaitions od the theme that have led to great advances in deep learning in many areas.
+
+### Convolutional neural networks (CNNs)
+
+One area where deep learnign has achieved spectacular success is image processing. The simple classifier what we studied in detail in the previous section is severely limited - as you noticed it wasn't even possible to classify all the smiley faces correctly. Adding more layers in the network and using backpropagation to learn the weights does in principle solve the problem, but another one emerges: the number of weights becomes extremely large and consequently, the amount of training data requiered to achieve satisfactory accuracy can become too large to be realistic.
+
+Fortunately, a very elegant soluttion to the problem of too many weights exists: a special kind of neural network, or rather, a special kind of layer that can be included in a deep neural networl. This special kind of layer is a so-called **convolutional layer**. Networks including convolutional layers are called **convolutional neural networks** (CNNs). Their key property is that they can detect image features such as bright or dark (or specific color) spots, edges in various orientations, patterns, and so on. These form the basis for detecting more abstract features such as a cat's ears, a dog's snout, a person's eye, or the octogonal shape of a stop sign. It would normally be hard to train a neural network to detect such features based on the pixels of the input image, because the features can appear in different positions, differenct orientations, and in different sizes in the image: moving the object or the camera angle will change the pixel values dramatically even if the object itself looks just the same to us. In order to learn to detect a stop sign in all these differenct conditions would require wast of amounts of trainign data because the network would only detect the sign in conditions where it has appeared in the training data. So, for example, a stop sign in the top right corner of the image would be detected only if the training data included an image with the stop sign in the top right corner. CNNs can recogniza the object anywhere in the images no matter where it has been observed in the training images.
+
+><h3>Why we need CNNs</h3>
+>
+>CNNs use a clever trich to reduce the amount of training data required to detect objects in different conditions. The trick basically amounts to using the same input weights for many neurons - so that all of these neurons are activated by the same pattern - but with a different input pixels. We can for example  have a ser of neurons that are activated by a cat's pointy ear. When the input is a photo of a cat, two neurons are activated, one for the left ear and one for the right. We can also let the neuron's input pixels be taken from a smaller or a larger area, so that different neurons are activated by the ear appearing in different scales (sizes), so that we can detect a small cat's ears even if the training data only included images of big cats.
+
+The convolutional neurons are typically placed in the bottom layers of the network, which processes the raw input pixels. Basic neurons (like the perceptron neuron discussed above) are placed i nthe higher layers, which process the output of the bottom layers. The bottom layers can usually be trained using unsupervised learnign, without a particular predictiontask in mind. Their weight will be tuned to detect features that appear frequently in the input data. Thus, with photos of animals, typical features will be ears and snouts, whereas in images of buildings, the features are architectural components such as walls, roofs, windows, and so on. If a mix of various objects and scenes is used as the input data, then the features learned byt the bottom layers will be more or less generic. This means that pre-trained convolutional layers can be reused in many idderent image processing tasks. This is extremely important since it is easy to get virtually unlimited amounts of unlabeled training data - images without labels - which can be used to train the bottom layers. The top layers are always trained by supervised machine learnign techniques such as back propagation.
+
+![](images/13_1.svg)
+
+### Do neural networks dream of electric sheep? Generative adversarial networks (GANs)
+
+Having learned network from data, it can be used for prediciton. Sicne the top layers of the network have been trained in a supervised manner to perform a particular classification task, the top layers are really useful only for that task. A network trained to detect stop signs is useless for detecting handwritten digits or cats.
+
+A fascinating is obtained by taking the pre-trained bottom layers and studying what the features they have learned look like. This can be achieved by generating images that activate a certain set of neurons in the  bottom layers. Looking at the generated images, we can see what the neural networks "thinks" a particular feature looks like, or what an image wihth a select set of features in it would look like. Some even like, or what an image with a select set of features in to would look like. Some even like to talk about the networks "dreaming" or "hallucinating" images (see Google's [DeepDream system](https://en.wikipedia.org/wiki/DeepDream)).
+
+><h3>Be careful with metaphors</h3>
+>
+>However, we'd like to obce again emphasize the problem with metaphors such as dreaming when simple when simple optimization of the input image is meant - remember the suicase words discussed in Chapter 1. The neural network doesn't really dream, and it doesn't have a concept of a cat that would understand in a similar sense as a human understands. It is simply trained to recognize objects and it can generate images that are similar to the input that it is trained on.
+
+To actually generate real looking cats, human faces, or other objects (you'll get whatever you used as the training data), [Ian Goodfellow](https://en.wikipedia.org/wiki/Ian_Goodfellow) who currently works at Google Brain, proposed a clever combination of two neural networks. THe idea is to let the two networks compete against each other. One of the networks is trained to generate images like the ones in the training data. THe other network's task is to separate images generated by the first network from real images from the training data - it is called the adversarial network, and the whole system is called generative adversarial network or a GAN.
+
+THe system trains the two models side by side. In the beginning of the training, the adversarial model has an easy task to tell apart the real images from the training data and the clumsy attempts by the generative model. However, as the generative network slowly gets better and better, the adversarial model has to improve as well, and the cycle continues until eventually the generated images are almost indistinguishable from real ones. The GAN tries to not only reproduce the images in the training data: that would be a way too simple strategy to beat the adversarial network. Rather, the system is trained so that it has to be able to generate new, real-looking images too.
+
+![](images/13_2.jpg)
+
+The above images were generated by a GAN developed by NVIDIA in a project led by [Prof Jaakko Lehtinen](https://users.aalto.fi/~lehtinj7/) (see [this article for more details](https://www.technologyreview.com/the-download/609290/meet-the-fake-celebrities-dreamed-up-by-ai/)).
+
+Could you have recognized them as fakes?
+
+## Recap
+
+<h4>After completing Chapter 5 you should be able to:</h4>
+
+- Explain what a neural network is and where they are being succesfully used.
+
+- Understand the technical methods that underpin neural networks
+
 # Chapter 06: Implications
+
+## I. About predicting the future
+
+## II. The societal implications of AI
+
+## III. Summary
