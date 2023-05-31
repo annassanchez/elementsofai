@@ -1014,11 +1014,23 @@ The argument for neural networks is that by simulating the lower-level, "subsymb
 
 Compared to how computers traditionally owrk, neural netowrks have certain special features:
 
-1. Neural network ky feature
+1. Neural network key feature
+
+    For one, in a traditional computer, information is processed in a central processor (aptly named the central processing unit, or CPU for short) which can only focus on doing one thing a a time. The CPU can retrieve data to be processed from the computer's memory, and store the result in the memory. Thus, data storage and processing are handled by two separate components of the computer: the memory and the CPU. In neural networks, the system consists of a large number of neurons, each of which can process information on its own so that instead of having a CPU process each piece of information one after the other, the neurons process vast amounts of information simultaneously.
 
 2. Neural network key feature
 
+    The second difference is that data storage (memory) and processing isn't separated like in traditional computers. The neurons both store and process information so that there is no need to retrieve data from the memory for processing. The data can be stored short term in the neurons themselves (they either fire or not at any given time) or for longer term storage we will discuss below.
+
+Because of these differences, neural networks and traditional computes are suited for somewhat different tasks. Even though it is entirely possible to simulate neural networks in traditional computers, which was the way they were used for a long time, their maximum capacity is achieved only when we use special hardware (computer devices) that can process many pieces of information at the same time. This is called **parallel processing**. Incidentally, graphics processors (or graphics processing units, GPUs) have this capability and they have become a cost-effective solution for running massive deep learning methods.
+
 ## II. How neural networks are built
+
+<h4>As we said earlier, neurons are very simple processing units. Having discussed linear and logistic regression in Chapter 4, the essential technical details of neural networks can be seen as slight variations of the same idea.</h4>
+
+><h3>Weights and inputs</h3>
+>
+>The basic artificial neuron model involves a set of adaptive parameters, called weights like in linear and logistic regression. Just like in regression, these weights are used as multipliers on the inputs of the neuron, which are added up. The sum of the w
 
 ## III. Advanced neural network techniques
 
