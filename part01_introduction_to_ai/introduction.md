@@ -1301,7 +1301,29 @@ There are a number of reasosn why both of the above scenarios are extremely unli
 
 Firstly, the idea that a **superintelligent**, conscious AI that outsmart humnas emerges as an unintended result of developing AI methods is naive. As you have seen in the previous chapters, AI methods are nothing but automated reasoning, based on the combination of perfectly understandable principles and plenty of input data, both of which are provided by humans or systems deployed by humans. To imagine that the nearest neighbot classifier, linear regression, the AlphaGo game engine, or even a deep neural network cvould become conscious and start evolving into a superintelligent AI mind requieres a (very) lively imagination.
 
+Note that we are not claining that building human-level intelligence would be categorically impossible. You only need to look need to look as far as the mirror to see a proof of the possibility of a highly intelligent physical system. To repeat what we are saying: superintelligence will not emerge from developing narrow AI methods and applying them to solve real-world problems (recall the narrow vs general AI from the section on the philosophy of AI in Chapter 1).
 
+#### Reason 2
+
+Secondly, one of the favorite ideas of those who believe in superintelligent AI is the so called **singularity**: a system that optimizes and "rewires" itself so that it can improve its own intelligence at an ever accelerating, exponential rate. Such superintelligence would have humankind so far behind that we become like ants that can be exterminated without hesitation. The idea of exponential intelligence increade is unrealistic for the simple reason that even if aa system could optimize its own workings, it would keep facing more and more difficult problems that would slow ddown its progress, quite like the progress of human scientists requires ever greater efforts and resources by the whole research community and indeed the whole society still has the power to decide what we use technology, even AI technology, for. Much of this power is indeed gven to us by technology, so that every time we make progress in AI technology, we become more powerful and better at controlling any potential risk due to it.
+
+><h3>The value alignment problem</h3>
+>
+>The paper clip example is known as the value alignment problem: specifying the objectives of the system so that they are aligned with out values is very hard. However, suppose that we create a superintelligent system that could defeat humans who trie to interfere with its work. It's reasonable to assume that such a system would also be intelligent enough to realize that when we say "make me paper clips", we don't really mean to turn the Earth into a paper clip factory of a planetary scale.
+
+### Separating stories from reality
+
+All in all, the Terminator is a great story to make movies but hardly a real problem worth panicking about. The Terminator is a gimmick, an easy way to get a lot of attention, a poster boy for journalists to increase click rates, a red herring to divert attention away from perhaps boring, but real, threats like nuvlcear weapons, lack of democracy, environmental catastrophes, and climate change. In fact, the real threat the Terminator poses is the diversion of attention from the actual problems, some of which involve AI, and many of which don't. We'll discuss the problems posed by AI inwhat follows, but the bottom line is: forget bout the Terminator, there are much more important things to focus on.
+
+### exercise23: what is the perception of AI?
+
+For this exercise, we want you to think about how AI is portrayed. Do an online **image search** for the term "AI" and see what kinds of pictures come up. If you are using Google search, you should choose "Images" in the top of the screen. 
+
+What's the general impression you get about AI from the image search results? Is this an accurate representation of AI?
+
+    For the search of images with the term "IA", the results are basically robot related images or images that can be assumed as neural networks.
+    It doesn't seem to be an accurate representation of AI, as it still has a more abstract support than a physical support - aka robots. I think AI is quite complicated to illustrate, as we normally have the misconception of assuming that it needs to be a robot, but right now AI could be better portrayed more like ChatGPT. 
+    However, illustrating AI as a diagram of a neural network I think it could be more appropriate, as it is what its trying to emulate.
 
 ## II. The societal implications of AI
 
