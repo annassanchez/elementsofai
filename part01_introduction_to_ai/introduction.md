@@ -1221,6 +1221,88 @@ Could you have recognized them as fakes?
 
 ## I. About predicting the future
 
+<h3>We will start by addressing what is known to be one of the hardest problems of all: predicting the future.</h3>
+
+You may be disappointed to hear this, but we don't have a crystal ball that would show us what the world will be like in the future and how AI will transform our lives.
+
+As scientist, we are often asked to provide predictions, and our refusal to provide any is faced with  roll on the eyes ("boring academics"). But in fact, we claim that anyone who claims to know the future of AI and the implications it will have on our society, should be treated with suspicion.
+
+![](images/14_1.svg)
+
+### The reality distortion field 
+
+Not everyone is quite as conservative about their forecasts, however. In the modern world where big headlines sell, and where you have to dissect news into 280 characters, reserced (boring?) messages are lost, and simple and dramatic messages are magnified. In the public perception of AI, this is clearly true.
+
+><h3>From utopian visions to grim predictions</h3>
+>
+>The media sphere is dominated by the extremes. We are beginning to see AI celebrities, standing for one big idea and making oracle-like forecasts about the future of AI. The media love their clear messages. SOmepromise us a [utopian future with exponential growth](https://www.youtube.com/watch?v=AIQ981NoZmk) and trillion-dollar industries emerging out of nowhere, [true AI that will solve all problems](https://www.youtube.com/watch?v=-Y7PLaxXUrs) we cannot solve by ourselves, and where [humans don't need to work at all](https://www.youtube.com/watch?v=9Jxlx9SZEAk).
+>
+>It has also been claimed that [AI is a path of world domination](https://www.youtube.com/watch?v=xPuAzc3Y_64). Others make even more extraordinary statemnents according to which [AI marks the end of humanity](https://www.youtube.com/watch?v=JYlKrHzknBE) (in about 20-30 years now), [life itself will be transformed](https://www.youtube.com/watch?v=oYmKOgeoOz4) in the "Age of AI", and that [AI is a threat to our existence](https://youtu.be/xs_HhZrCBdg).
+
+While some forecasts will probably get at least something right, others will likely be useful only as demonstrations of how hard is to predict, and many don't make much sense. What we would like to achieve is for you to be able to look at these and other forecasts. and be able to critically evaluate them.
+
+### On hedgehogs and foxes
+
+The political scientist [Phillip E. Tetlock](https://en.wikipedia.org/wiki/Philip_E._Tetlock), author of *Superforecasting: The Art and Science of Prediction*, classifies people into two categories: those who have one big idea ("hedgehogs"), and those thow have many small ideas ("foxes"). Tetlock has carried out an experiment between 1984 and 2003 to study factors that could help us identify which predictions are likely to be accurate and which are not. One of the significant findings was that fixes tend to be clearly better at prediction than hedgehogs, especially when it comes to long-term forecasting.
+
+Probably the mesages that can be expressed in 280 characters are more often big and simple hedgehog ideas. Our advice is to pay attention to carefully balanced information sources, and to be suspicious about people who keep explainin everythin using a single argument.
+
+Prediction the future is hard but at least we can consider the past and present of AI, and by understanding them, hopefully be better prepared for the future, whatever it turns out to be.
+
+![](images/14_2.svg)
+
+### AI Winters
+
+The history of AI, just like many others fields of science, has witnessed the coming and going of various different trends. In philosophyu of science, the term used for a trend is paradigm. Tipically, a particular paradigm is adopted by most of the research community and optimistic predictions about progres in the near-future are provided. For example, in the 1960s neural networks were widely believed to solve all AI problems by imitationg the learning mechanisms in nature, the human brain in particular. The next big thing was expert systems based on logic and human-coded rules, which was the dominant paradigm in the 1980s.
+
+### The cycle of hype
+
+In the beginning of each wave, a number of early success stories tend to make everyone happy and optimistic. The success stories, even if they may be in restricted domains and in some wways incomplete, become the focus on public attention. Many researchers ruch into AI - or at least calling their research AI - in order to access the increased research in funding. Companies aslo initiate and expand their efforts in AI in the fear of missing out (FOMO).
+
+So far, each time an all-encompasing, general solution to AI has been said to be within reach, progress has ended up running into insumountable problems, which at the time were thought to be minor hiccups. In the case of neural networks in the 1960s, the hiccups were related to handling nonlinearities and to solving the machine learning problems associated with the increasing number of parameters required by neural network architectures. In the case of expert system in the 1980s, the hiccups were associated with handling uncertainty and common sense. As the true nature of the remianing problems dawned after years of struggiling and unsatidfied promises, pessimism about the paradigm accumulated and an AI winter followed: interest in the filed faltered and research efforts were directed elsewhere.
+
+### Modern AI
+
+Currently, roughly since the turn of the millenium, AI has been on the rise again. Modern AI mehtods turn to focus on breaking a problem into a number of smaller, isolated and well-defined problems and solving one at a time. Modern AI is bypassing grand questions about meaning of intelligence, the mind, and consciousness, and focusing on building useful solutions in real-world problems. Good news for us all who can benefit from such solutions!
+
+Another characteristic of modern AI methods, closely related to working in the complex and "messy" real world, is the ability to handle uncertainty, which we demonstrated by studying the uses of probability in AI in Chapter 3. Finally, the current upwards trend of AI has been greatly boosted by the come-back neural networks and deep learning techniques capable of processing images and other real-world data better than anything we have seen before.
+
+><h3>So are we in a hype cycle?</h3>
+>
+>Whether the history will reppeat itself, and the current boom will be once again followed by an AI winter, is a matter that only time can tell. Even if it does, and the progress towards better and better solutions slows down to a halt, the significance of AI in the society is going to stay. Thanks to the focus on useful solutions to real-world problems, modern AI research yields fruit already today, rather than trying to solve the big questions about general intelligence first - which was where the earlier attempts failed.
+
+### Prediction 01: AI will continue to be all around us
+
+As you recall, we started by motivating the study of AI by discussing prominent AI appplications by discussing prominent AI applications that affects all our lives. We highlighted tree examples: self-driving vehicles, recommendation systems, and image and video processing. During the course, we have also discussed a wide reange of other applications that contribute to the ongoing technological transition.
+
+><h3>AI making a difference</h3>
+>
+>As a consequence of focusing on practicality rather than the big problems, we live our life sorrounded by AI (even if we may most of the time be happily unaware of it): the music we listen to, the products we buy online, the movies and series we watch, our routes of trasportation, and even the news and information that we have available, are all influenced more and more by AI. What is more, basically any field of science, from medicine and astrophysics to medieval history, is also adopting AI methods in order to deepen our understanding of the universe and of ourselves.
+
+![](images/14_3.svg)
+
+### Prediction 02: The Terminator isn't coming
+
+One of the most pervasive and persistent ideas related to the future of AI is the Terminator. In case you should have somehow missed the image of a brutal humanoid robot with a metal skeleton and glaring eyes..., well that's what it is. *The Terminator* is a 1984 film by director James Cameron. In the movie, a global AI-powered defense system called Skynet becomes conscious of its existence and wipes most of the humankind out of existence with nukes and advanced killer robots.
+
+><h3>Two doomsday scenarios</h3>
+>
+>There are two alternative scenarios taht are suggested to lead to the coming of the Terminator or other similarly terrifying forms of robot uprising. In the first, which is the story from the 1984 film, a powerful AI system just become conscious and decides that it just really, really dislikes humanity in general.
+>
+>In the second alternative scenario, the robot is controlled by an intelligent byt not conscious AI system that is in principle in human control. The system can be programmed, for example, to optimize the production of paper clips. Sounds innocent enough, doesn't it?
+>
+>However, if the system possesses superior intelligence, it will soon reach the maximum level of paper clip production that the available resources, such as energy and raw materials, allow. After this, it may come to the conclusion that it needs to redirect more resources to paper clip production. In order to do so, it may need to prevent the use of the resources for other purposes even if they are essential for human civilization. The simplest way to achieve this is to kill all hum,nas, after which a great deal more resources become available for the system's main task, paper clip production.
+
+### Why these scenarios are unrealistic
+
+There are a number of reasosn why both of the above scenarios are extremely unlikely and belong to science fiction rather than serious speculations of the future of AI.
+
+#### Reason 1
+
+Firstly, the idea that a **superintelligent**, conscious AI that outsmart humnas emerges as an unintended result of developing AI methods is naive. As you have seen in the previous chapters, AI methods are nothing but automated reasoning, based on the combination of perfectly understandable principles and plenty of input data, both of which are provided by humans or systems deployed by humans. To imagine that the nearest neighbot classifier, linear regression, the AlphaGo game engine, or even a deep neural network cvould become conscious and start evolving into a superintelligent AI mind requieres a (very) lively imagination.
+
+
+
 ## II. The societal implications of AI
 
 ## III. Summary
