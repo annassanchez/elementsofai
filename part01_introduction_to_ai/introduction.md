@@ -1327,4 +1327,224 @@ What's the general impression you get about AI from the image search results? Is
 
 ## II. The societal implications of AI
 
+<h4>In the very beginning of this course, we briefly discussed the importanc of AI in today's and tomorrow's society but at that time, we could do so only to a limited extent because we hadn't intorduced enough of the technical concepts and methods to ground the discussion on concrete terms.</h4>
+
+Now that we have a better understanding of the basic concepts of AI, we are in a much better position to take part in rational discussion about the implications of already the current AI.
+
+![](images/15_1.svg)
+
+### Implication01: Algorithm bias
+
+AI, and in particular, machine learning, is being used to make important decisions in many secotrs. This brings up the concept of algorithm bias. What it means is the embedding of a tendency to discriminate according ethnicity, gender, or other factors when maiking decisions about job applications, bank loans, and so on.
+
+><h4>Once again, it's all about the data</h4>
+>
+>The main reason for algorithmic bias is human bias in the data. For example, when a job application filtering tool is trained on decisions made by humans, the machine learning algorithm may learn to discriminate against women or individuals with a certain ethnic background. Notice that this may happen even if ethnicity or gender are excluded from the data since the algorithm will be able to exploit the information in the applicant's name or address.
+
+Algorithmic bias isn't a hypotthetical threat conceived by academid researchers. It's a real phenomenon that is already affecting people today.
+
+#### Online advertising
+
+It has been noticed that online advertisers like Google tend to display ads of lower-pay jobs to women users compared to men. Likewise, doing a search with a name that sounds African American may produce and ad for a tool for accessing criminal records which is less likely to happen otherwise.
+
+#### Social networks
+
+Since social networks are basing content recommendations essentially on other users' clicks, they can easily lead to magnifying existing biases even if they are very minor to start with. For example, it was observed that when searching for professionals with female first names, LinkedIn would ask the user whether they actually meant a similar male name: searching for Andrea would result in the system asking "did you mean ANdrew?" If people occasionally click Andrew's profile, perhaps just out of curiosity, the system will boost Andrew even more in subsequent searches.
+
+There are numerous other examples we could mention, and you have probably seen news stories about them. The main difficulty in the use of AI machine learning instead of rule-based systems is their lack of transparency. Partially this is a consequence of the algorithms and the data being trade secretss that the companies are unlikely to open up for public scrutiny. And even if they did this, it may often be hard to identify the part of the algorithm or the elements of the data lead to discriminating decisions.
+
+><h4>Transparency through regulation?</h4>
+>
+>A major step towards transparency is the European General Data Protection Regulation (GDPR). It requieres that all companies that either reside within the European Union or that have European customers must:
+>
+>- Upon request, reveal what data they have collected about any individual (right of access)
+>- Delete any such data that is not requiere to keep with other obligations when requested to do so (right to be forgotten)
+>- Provide an explanation of the data processing carried out on the customer's data (right to explanation)
+
+The last point means, in other words, that companies such as Facebook and Google, at least when providing services to European users, must explain their algorithmic decision making processes. It is, however, still unclear what exactly counts as an explanation. Does for example a decision reached by using the nearest neighbor classifier (Chapter 4) count as an explainable decision, or would the coefficients of a logistic regression classifier be better? How about deep neural networks that easily involve millions of parameters trained using terabytes of data? The discussion about the technical implementation about the explainability of decisions based on machine learning is currently intensive. In any case, the GDPR has potential to improve the transparency of AI technologies.
+
+![](images/15_2.svg)
+
+### Implication02: Seeing is believing - or is it?
+
+We are used to believing what we see. When we see a leader on the TV stating that their country will engage in a trader-war with another country, or when a well-known company spokesperson announces an important business decision, we tend to trust them better than just reading about the statement second-hand from the news written by someone else.
+
+Similarly, when we see photo evidence from a crime scene or from a demonstration of a new tech gadget, we put more weight on the evidence than on written report explaining how things look.
+
+Of course, we are aware of the possibility of fabricating fake evidence. People can be put in places they never visited, with people they never met, by photoshopping. It is also possible to change the way things look by simply adjusting lightning or pulling one's stomach in in cheap before - after shots advertising the latest diet pill.
+
+><h4>AI is taking the possibilities of fabircating evidence to a whole new level:</h4>
+>
+>[Face2Face](https://www.youtube.com/watch?v=ohmajJTcpNk) is a system capable of identifying the facial expressions of a person and putting them on another person's face in a Youtube video. 
+>
+>[Lyrebird](https://www.descript.com/lyrebird-ai?source=lyrebird) is a tool for automatic imitation of a person's voice from a few minutes of sample recording. While the generated audio still has a notable robotic tone, it makes a pretty good impression.
+
+![](images/15_3.svg)
+
+### Implication03: Changing notions of privacy
+
+It has been long known that technology companies collect a lot of information about their users. Earlier it was mainly grocery stores and other retailers that collected buying data by giving their customers loyalty cards that enable the store to associate pruchases to individual customers.
+
+><h4>Unprecedented data accuracy</h4>
+>
+>The accuracy of the data that tech companies such as Facebook, Google, Amazon and many others is way beyond the purchase data collected by conventional stores: in principle, it is possible to record every click, every page scroll, and the time you spend viewing any content. Websites can even access your browsing history, so that useless you use the incognito mode (or the like) after browsing for flights to Barcelona on one site, you will likely get advertisements for hotels in Barcelona.
+
+However, as such the above kind of data logging is not yet AI. The use of AI leads new kinds of threats to our privacy, which may be harder to avoid even if you are careful about revealing your identity.
+
+#### Using data analysis to identify individuals
+
+A good example of a hard-to-avoid issue is **de-anonymization**, breaking the anonymity of data that we may have thought to be safe. THe basic problem is that when we report the results of an analysis, the results may be so specific that they make it possible to learn something about individiaul users whose data is included in the analysis. A classic examle is asking for the average salary of people born in the given yaear and having a specific zip code. In many cases, this could be a very small group of people, often only one person, so you'd be potentially giving data about a single person's salary.
+
+An interesting example of [a more subtle issue](https://www.wired.com/2007/12/why-anonymous-data-sometimes-isnt/) was pointed out by researchers at the University of Texas Austin. They studied a public dataset made available by Tetflix containing 10 million movie ratings by some 500,000 anonymous users, and showed that many of the Netflix users can actually be linked to user accounts on the Internet Movie Database because they had rated several movies on both applucations. Thus the researchers were able to de-anonymize the Netflx data. While you may not think it's big deal whether someone else knows how you rated the latest *Star Wars* movie, some movies may reveal aspects of our lives (such as politics or sexuality) which we should be entitled to keep private.
+
+#### Other methods of identification
+
+A similar approach could in principle be used to match user accounts in almost any servie that collects detailed data about user bevaviors. Another example is typing patterns. Researchers at the University of Helsinki have demonstrated that users can be identified based on their typing patterns: the short intervals between specific keystrokes when tryping text. This can mean that if someone has access to data on your typing pattern (maybe you have used their website and redistered by entering your name), they can identify you the next time you use their service even if you'd refuse to identify yourself explicitly. They can also sell this information to whoever wants to buy it.
+
+While many of the above examples have come as at least in part as surprises - otherwise they could have been avoided - there is a lot of ongoing resarch trying to address them. In particular, an area called differential privacy aims to develop machine learning algorithms that can guarantee that the results are sufficiently coarse to prevent reverse engineering specific data points that went into them.
+
+![](images/15_4.svg)
+
+### Implication04: Changing work
+
+When an early human learned to use a sharp rock to crack open bonus of dead animals to access a new source of nutrition, tiem and anergy was released for other purposes such as fighting, finding a mate, and making more invitations. THe invention of the steam engine in the 1700s tapped into an easily portable form of machine power that greatly improved the efficiency of factories as well as ships and trains. Automation has always been a path to efficiency: getting more with less. Especially since the mid 20th century, technological development has led to a period of unprecedented progress in automation. AI is a ciontinuation of this progress.
+
+Each step towards better automation changes the working life. With a sharp rock, there was less need for hunting and gathering food; with the steam engine, there was less need for horses and horsemen; with the computer, there is less need for typists, manual accounting and many other data processing (and apparently more need for watching cat videos). With AI and robotics, there is even less need for many kinds of dull, repetitive work.
+
+><h4>A history of finding new things to do</h4>
+>
+>In the past, every time one kind of work has been automated, people have found new kinds to replace it. The new kinds of wrok are less repetitive and routine, and more varaible and creative. The issue with the current rate of advance of AI and other technologies is that during the career of an individual, the change in the working life might be greater than even before. It is conceivable that some jobs such as driving a truck or a taxi, may disappear within a few years' time span. Such an abrupt change could lead to mass unemploument as people don't have time to train themselves for other kinds of work.
+>
+>The most important preventive action to avoid huge societal issues such as this is to help young people obtain a wide-ranging education. This that provides a basis for pursuing many different jobs and which isn't high risk of becoming obsolete in the near future.
+>
+>It is equally important to support life-long learning and learning at work, because there are going to be few of us who will do the same job throughout their entire career. Cutting the hours per week would hep offer work for more people, but hte laws of economics tend to push people to work more rather than less unless public policy regulating the amount of work is introduced.
+
+Because we can't predict the future of AI, predicting the rate and extent of this development is extremely hard. THere have been some estimates about the extent of job automation, raging up to [47% of US jobs being at risk](https://www.economist.com/graphic-detail/2018/04/24/a-study-finds-nearly-half-of-jobs-are-vulnerable-to-automation) reported by researchers at the University of Osford. The extract numbers such as there - 47%, not 45% or 49% -, the complicated-sounding study designs used to get them, and the top universities that report them tend to make the estimates sound very reliable and precise (recall the point about estimating life expectancy using a linear model based on a limited amount of data). The illusion of accuracy to one percentage is a fallacy. The above number, for example, is based on looking at a large number of job descriptions - perhaps licking the tip of your finger and putting it up to feel the wind - and using subjective grounds to decide which tasks are likely to be automated. It is understandable that people don't take the trouble to read a 79 page report that includes statements such as "the task model assumes of tractability an aggregate, constant-return to-scale, Cobb-Douglas production function." However, if you don't, then you should remain somewhat sceptical about the conclusions too. The ral value in this kind of analysus is that it suggests which kinds of jobs are more likely to be at risk, not int the actual numbers such as 47%. The tragedy is that the headlines reporting "nearly half of US jobs at risk of computerization" are noted, and the rest is not.
+
+So then, what actually are the tasks that are more likely ot be automated? There are some clear signs concerning this that we can already observe:
+
+- Autonomours robotics solutions such as self-driving vehicles, including cars, drones and boats or [ferries](https://www.reaktor.com/work/autonomousferry/), are just at the verge of major commercial applications. The safety of autonomous cars is hard to estimate, but hte stadistics suggests that it is probably not yet wuite at the required level (the level of an average human driver). However, the progress has been incredibly fast and it is accelerating due to the increasing amount of available data.
+
+- Customer-service applications such as helpdesks can be automated in a very cost-effective fashion. Currently the quality of services is not always to be cheered, the bottle-necks being language processing (the system not being able to recogniza spoken language or to parse the grammar) and the logic and reasoning required to provide the actual service. However, working applications in constrained domains (such as [making restaurant or haircut reservations](https://www.youtube.com/watch?v=BRUvbiWLwFI)) sprout constantly.
+
+For one thing, it is hard to tell how soon we'll have safe and reliable self-driving cars and other solutions that can replace human work. In addition to this, we mustn't forget that a truck or taxi driver doesn't only turn a wheel: they are also responsible for making sure the vehicle operates correctly, they handle the goods and negotiate with customers, they guarantee the safety of their cargo and passengers, and take care og a multitude of other tasks that may be much harder to automate than the actual driving.
+
+As with earlier technological advances, there will also be new work that is created because of AI. It is likely that in the future, a larger graction of the workforce will focus on research and development, and tasks that require creativity and human-to-human interaction. If you'd like to read more on this topic, see for example Abhian Suri's nice essay on [Artificail Intelligence and the Rise of Economic Inequality](https://towardsdatascience.com/artificial-intelligence-and-the-rise-of-economic-inequality-b9d81be58bec).
+
+### exercise 24: the implications of AI
+
+What kind of articles (in newspapers and magazines or other popular science outlers such as blogs, ...) are being written about AI - and do you think they are realistic? Do an online search about AI related to one of your inteserst. **Choose one of the articles and analyze it.**
+
+1. Mention the **title of the article** along with its author and where it was publisehd (as a URL if applicable) in your answer.
+
+2. Explain the central idea in the article **in your own words** using about a paragraph of text (multiple sentences).
+
+3. Based on your understanding, how accurate are the AI-related statements in the article? **Explain your answer**. Are the implications (if any) realistic? **Explain why or whay not**.
+
+    >Crochet enthusiasts asked ChatGPT for patterns. The results are ‘cursed’
+    https://www.theguardian.com/technology/2023/feb/26/chatgpt-generated-crochet-pattern-results
+    >
+    >The article discusses how crochet enthusiasts have turned to ChatGPT, an artificial intelligence chatbot, to generate crochet patterns. However, the results have been described as "cursed" and unconventional. TikTok users, have experimented with ChatGPT's pattern-making abilities, creating stuffed animals with varying levels of success. While the language-learning tool managed to generate comprehensive instructions resembling crochet patterns, the final products were described as strange and oddly adorable. Crochet patterns pose challenges for AI due to their reliance on numbers and intricate stitching techniques. 
+    Although ChatGPT excels in creativity, it struggles with context and understanding the meaning behind words and numbers - in crochet this is vital, because each one of the symbols represents something in reality, but ChatGPT doesn't have the ability yet to understand the outcome.
+    > 
+    >Despite its shortcomings, the collaboration between humans and AI in the realm of crochet is seen as an intriguing exploration of the boundaries of artificial intelligence.
+
 ## III. Summary
+
+<h3>The most important decisions that determine how well our society can adapt to the changes brought by AI aren't technological. They are political.</h3>
+
+Everythin that we have learned about AI suggests that the future is bright. We will get new and better services and increased productivity will lead to positive overall outcomes - but only on the condition that we carefully consider the societal implications and ensure that the power of AI is used for the common good.
+
+### What we need to do to ensure a positive outcome
+
+Still we have a lot of work to do.
+
+- We need to avoid algorithmic bias to be able to reduce discrimination instrad of increasing it.
+
+- We also need to learn to be critical about what we see, as seeing is no longer the same as believing - and develop AI methods that help us detect fraud rather than just making it easier to fabricate more real-looking falsehoods.
+
+- We need to set up regulation to guarantee that people have the right to privacy, and that any violations of this are strictly penalized.
+
+We also need to find new ways to share the benefits to everyone, instead of creating an AI elite, those who can afford the latest AI technology and use it it access unprecedented economic inequality. This requires careful judgement (note that by political judgement, we mean decisions about policy, which has little to do with who votes for whom in an election or the comings and goings of individual politicians and political parties).
+
+><h3>The importance of policy</h3>
+>
+>The most important decisions that determine how well our society can adapt to the evolution of work and to the changes brought by AI aren't technological. They are political. 
+>
+>The regulation of the use of AI must follow democratic principles, and everyone must have an equal say about what kind of a society we want to live in in the future. The only way to make this possible is to make knowledge about technology freely available to all. Obviously, there will always be experts in any given topic, who know more about in than the rest of us, but we should at least have the possibility to critically evaluate what they are saying. 
+
+What you have learned supports this goal by providing you the basic background about AI so that we can have a rational discussion about AI and its implications.
+
+### Our role as individuals
+
+As you recall, we started this course by motivating the study of AI by discussing prominent AI applications that affect all our lives. We highlighted three examples: self-driving cars, recommendation systems, and image and video processing. During the course, we have also discussed a wide range of other applications that contribute to the current technological transition.
+
+><h3>Hidden agenda</h3>
+>
+>We also had a hidden agenda. We wanted to give you an opportunity to experience the thrill of learnig, and the joy of eureka moments when something that may have been complicated and mysterious, becomes simple and if not self-evident, at least comprehensible. These are moments when our curiosity is satisfied. But such satisfication is temporary. Soon after we have found the answer to one question, we will ask the newxt. What then? And then?
+>
+>If we have been succesful, we have whetted your appetite for learning. We hope you will continue your learning by finding other courses and further information about AI, as well as other topics of your interest. To help you with your exploration, we have collected some pointers to AI material that we have found useful and interesting.
+
+Now you are in a position where you can find out about what is going on in AI, and what is being done to ensure its proper use. You should do so, and whenever you feel like there are risks we should discuss, or opportunities we should fo after, don't wait that someone else reacts.
+
+### exercise25: AI in your life
+
+How do you see AI affecting you in the future, both at work and in every day life? Include both the positive and possible negative implications.
+
+    AI is a tool, so by itself it doesn't have any implications. The thing is how you use AI in day-to-life, that can generate positive or negative implications. I will list some examples of both:
+
+    Positive implications of AI:
+
+    - Efficiency: AI has the potential to automate repetitive tasks and enhance productivity in various industries, freeing up time for humans to focus on more creative and complex tasks. Also, AI can learn from your behaviors and patterns and "learn" how to improve the repetitive process.
+
+    - Accuracy: AI algorithms can analyze vast amounts of data quickly and accurately, leading to more precise decision-making and outcomes in fields like healthcare, finance, and scientific research. It sometimes can be more accurate than humans - as we sometimes are tired or don't recognize patterns as easily, helping to make more accurate decisions.
+
+    - Convenience: AI-powered technologies, such as virtual assistants and smart home devices, can simplify daily tasks, provide personalized recommendations, and improve overall convenience in everyday life. In this sense, we currently live with this AI: Spotify, Amazon, Netflix, currently use this systems and we use them in our lives in order to see a movie or to listen to new music or watch a new YouTube video.
+
+    Possible negative implications of AI:
+
+    - Job displacement: The automation of certain tasks by AI could lead to job losses in certain industries, requiring individuals to adapt their skills or seek employment in new areas. As it can happen with the use of AI systems of ChatGPT, this tool can generate information that can eventually replace the work of translators or journalists. 
+
+    - Ethical concerns: AI raises ethical questions regarding privacy, data security, and biases within algorithms, as the people that develop the algorithms come from a very specific background. Ensuring that AI systems are fair, transparent, and respectful of user privacy will be crucial and it depends on the engineers that develop it - we need AI engineers from diverse backgrounds, not only ethnically but also from other disciplines such as philosophers or psychologist. 
+
+    - Overreliance on AI: Excessive dependence on AI systems without critical thinking and human oversight could lead to potential errors or misuse of technology, especially in critical areas like media. Right now an AI can generate images that could be misused and polarised the society.
+
+    It is important to note that the impact of AI will depend on various factors, including how it is developed, regulated, and integrated into different sectors. Balancing the benefits and risks of AI will require responsible development, ongoing research, and proactive policy-making.
+
+### This ia not the end - this is the beginning.
+
+That’s it for now. We thank you for joining us. This has been a great adventure for us, and we really hope that you enjoyed it too. We are not yet finished with the course, and I believe we will never be. We will keep doing our best updating and improving it, and making it the best AI MOOC in the world.
+
+Like the course isn’t finished, you shouldn’t think that your exploration of AI is finished either. The progress is quite rapid and it may seem too much to keep track of, but the comforting news is that the basic principles have stayed more or less the same decade after decade. As long as you know the basics about problem-solving strategies, handling uncertainty, and learning from data, you should be able to easily put new things into perspective. This is why you had to draw diagrams with chickens crossing rivers, Towers of Hanoi, why you had to calculate the probability of rain in Helsinki, or detect happy faces by a neural network. Knowing the fundamentals, or the elements of AI, is much longer lasting knowledge than learning the technical details of a particular AI solution.
+
+Below we give a few pointers that we have found useful. Keep learning, stay curious.
+
+    "The future has not been written. There is no fate but what we make for ourselves." (John Connor)
+
+- The equel to this course, [Building AI](http://buildingai.elementsofai.com/?_ga=2.112874948.1717926132.1685635114-2034105223.1684856055)
+
+- Check out other University of Helsinki's open online courses at [mooc.fi](https://mooc.fi/en).
+
+- See which courses MinnaLearn has to offer [courses.minnalearn.com](https://courses.minnalearn.com/).
+
+- You are welcome to apply to [the University of Helsinki](https://www.helsinki.fi/en/studying) too!
+
+- Looking to train your company in AI? See [Elements of AI for business](https://www.minnalearn.com/elements-of-ai-for-business/).
+
+- Recommended programs for continued education: ['AI Diploma' by HY+/Aalto PRO/FCAI](https://www.aaltopro.fi/aidiploma), and ['AI:n perusteet' by Aalto Executive Education (in Finnish)](https://www.aaltoee.fi/aiperusteet).
+
+- Our advisor, Risto Siilasmaa’s ["What is Machine Learning" video](https://www.youtube.com/watch?v=KNMy7NCQDgk) (1h 18min)
+
+- [A friendly introduction to machine learning](https://www.youtube.com/watch?v=IpGxLWOIZy4) (Luis Serrano/Udacity) (30min)
+
+- Andrew Ng’s [Machine Learning MOOC](https://www.coursera.org/learn/machine-learning) at Coursera
+
+- Udacity [School of AI](https://eu.udacity.com/school-of-ai)
+
+- Machine Learning - [Learn AI with an AI (Korbit)](https://korbit.ai/machinelearning)
+
+## Recap
+
+- Understanding the difficulty in predicting the future and be able to better evaluate the claims made about AI.
+
+- Indentify some of the major societal implications of AI including algorithm bias, AI-generated content, privacy, and work.
