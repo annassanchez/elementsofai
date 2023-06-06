@@ -24,16 +24,16 @@ smallest = 1000000
 bestroute = [0, 0, 0, 0, 0]
 
 def permutations(route, ports):
-    global smallest, bestroute
+    global smallest, bestroute, co2
     if len(ports) < 1:
         #smallest = 1000000
-        count = D[0][route[1]]
-        count += D[route[1]][route[2]]
-        count += D[route[2]][route[3]]
-        count += D[route[3]][route[4]]
+        count = 0
+        for i in range(len(route) - 1):
+            count += D[route[i]][route[i+1]] * co2
         if count < smallest:
             smallest = count
             bestroute = route
+            return smallest, bestroute
     else:
         for i in range(len(ports)):
             permutations(route+[ports[i]], ports[:i]+ports[i+1:])
@@ -45,7 +45,7 @@ def main():
     global smallest
     # this will start the recursion 
     permutations([0], list(range(1, len(portnames))))
-    smallest = smallest * co2
+
     # print the best route and its emissions
     print(' '.join([portnames[i] for i in bestroute]) + " %.1f kg" % smallest)
 
