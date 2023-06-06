@@ -104,6 +104,44 @@ To solve this problem, it is wnoguh to list all the possible routes that start f
 
 Let's consinder each stage separately, starting from listing all the possible alternatives. The term used by programmers is enumerate. So we'll first **enumerate** all the possible routes. THose of you who are well-versed in combinatorics (the part of mathematics that deals with combinations of finite sets of objects) will know that the number of routes is `4 * 3 * 2 * 1 = 24`. 
 
+### exercise01: listing pineapple routes
+
+How many routes would there be if all the people in Helsinki were allergic to pineapple? In other words, what is the number of routes from a given starting point to three other ports (instead of four)? 
+
+6 -> Correct. The formula for counting the number of routes is 1 x 2 x 3 x ... where the last number is the number of ports, not including the starting points. So if there are three other ports, the number is 1 x 2 x 3 = 6.
+
+### What this teaches us
+
+Just listing the alternatives is not very useful byt at least it helps us realize that the number of routes starting to be so high that finding the best one manually would be a chore. There are 24 routes for five ports (one of which is the starting point). If some pineapples were also wanted in, say, London, if could be added in the route in five different positions so the number would become `5 * 24 = 120`. With yet another destination, whis number would be multiplied by 6, to get `6 * 120 = 720`.
+
+>The formula `1 * 2 * 3 * ... * n` is called a *factorial* and it gores **really** fast. For 10 destinations (in addition to the starting point in Panama), the number of routes is already 3,628,800. This means that very quickly a manual solution is completely out of the question.
+
+An automatic solution using a computer can take us much further. However, without some clever strategies to reduce the workload, eeven a computer will choke sooner or later. Which is where more advanced AI techniques step in. But let's not rush ahead of ourselves before we have to - let's work out our route to get the pineapples delivered to the four cities with minimal carbon emissions.
+
+Having listed the alternatives, next we can calculate the carbon emissions for each of them. Below you will find the distances between portis in kilometers in a five-by-five table.
+
+|	 |PAN | AMS| CAS | NY | HEL |
+| - | - | - | - | - | - |
+| PAN | 0| 8943 | 8019 | 3652 | 10545 | 
+| AMS |8943 | 0 | 2619 | 6317 | 2078 |
+| CAS | 8019 | 2619 | 0 | 5836 | 4939 |
+| NY | 3652 | 6317 | 5836 | 0 | 7825 |
+| HEL | 10545 | 2078 | 4939 | 7825 | 0 |
+
+Let's assume that the boat is realtively modern and produces 0.020 kg of CO2 emissions per kilometer for the amount of pineapples that we are shippong. Thus, you can calculate the emissions caused by traveling from Panama to Amsterdam by first looking up the distance in the first row, second column of the table (highlighted in the above table): 8943 km, and then multiplying this with 0.020kg/km to get 178.9 kg.
+
+### ecercise02: pineapple route emissions
+
+Using the reference table, calculate the emissions produced by the following three routes. Which produces the least emissions?
+
+- PAN, AMS, CAS, NY, HEL -> 623.18
+
+- PAN, NY, CAS, AMS, HEL -> 283.7 -> less emisions
+
+- PAN, NY, AMS, CAS, HEL -> 350.7
+
+correct! The total distances are 25,223.0 km, 14,185.0 km, and 17,527.0 km. The corresponding emissions are 504.5 kg, 283.7 kg, and 350.5 kg, respectively. So the second route is the shortest and produces the least emissions. If you look at the map, the second route makes sense since it starts from Central America, stops at North America, crosses the Atlantic to stop at the African continent before continuing to Central Europe and finally to Northern Europe.
+
 ## III. Hill climbing
 
 # Chapter02: Dealing with uncertainty
