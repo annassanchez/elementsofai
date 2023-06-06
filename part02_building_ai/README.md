@@ -142,6 +142,14 @@ Using the reference table, calculate the emissions produced by the following thr
 >
 >correct! The total distances are 25,223.0 km, 14,185.0 km, and 17,527.0 km. The corresponding emissions are 504.5 kg, 283.7 kg, and 350.5 kg, respectively. So the second route is the shortest and produces the least emissions. If you look at the map, the second route makes sense since it starts from Central America, stops at North America, crosses the Atlantic to stop at the African continent before continuing to Central Europe and finally to Northern Europe.
 
+In all of the abov exercises, we had a criterion or score that ranks different alternatives so that we can always decide which is the better choice. For example, in the pineapple shipping problem, the total length of the route or the amount of carbon emissions was the criterion and we always preferred the shoreter route with the lowest emissions.
+
+The above exercises are meant to show if we can only devise such a criterion, then the problem-solving task becomes a straightforward optimization tasl. This is not to say that it would necessarily be an easy task since the number of alternatives can be really, really big. The approach that we used, where we simply iterate through every single option and choose the best, is called the **brute force** approach.
+
+><h4>When brute force is not enough</h4>
+>
+>Saying that computers are fast is an understatement. Modern processors instructions ar rates measured in gigaterz (GHz) - that is, billions of instructions per second. So we can do a lot by using a brute force approach that simply iterates through all the possible solutions. However, many of the problems we are solving are such that even the fastest computer chokes due to a phenomenon called combinatorial explosion. For any such problem, the brute force approach is too slow unless the problem size (such as the number of ports) is very small. This may mean that we have to settle for a good solution instead of the optimal one.
+
 ## III. Hill climbing
 
 # Chapter02: Dealing with uncertainty
