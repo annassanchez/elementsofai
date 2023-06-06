@@ -134,13 +134,13 @@ Let's assume that the boat is realtively modern and produces 0.020 kg of CO2 emi
 
 Using the reference table, calculate the emissions produced by the following three routes. Which produces the least emissions?
 
-- PAN, AMS, CAS, NY, HEL -> 623.18
-
-- PAN, NY, CAS, AMS, HEL -> 283.7 -> less emisions
-
-- PAN, NY, AMS, CAS, HEL -> 350.7
-
-correct! The total distances are 25,223.0 km, 14,185.0 km, and 17,527.0 km. The corresponding emissions are 504.5 kg, 283.7 kg, and 350.5 kg, respectively. So the second route is the shortest and produces the least emissions. If you look at the map, the second route makes sense since it starts from Central America, stops at North America, crosses the Atlantic to stop at the African continent before continuing to Central Europe and finally to Northern Europe.
+>- PAN, AMS, CAS, NY, HEL -> 623.18
+>
+>- PAN, NY, CAS, AMS, HEL -> 283.7 -> less emisions
+>
+>- PAN, NY, AMS, CAS, HEL -> 350.7
+>
+>correct! The total distances are 25,223.0 km, 14,185.0 km, and 17,527.0 km. The corresponding emissions are 504.5 kg, 283.7 kg, and 350.5 kg, respectively. So the second route is the shortest and produces the least emissions. If you look at the map, the second route makes sense since it starts from Central America, stops at North America, crosses the Atlantic to stop at the African continent before continuing to Central Europe and finally to Northern Europe.
 
 ## III. Hill climbing
 
