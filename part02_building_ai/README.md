@@ -152,6 +152,44 @@ The above exercises are meant to show if we can only devise such a criterion, th
 
 ## III. Hill climbing
 
+<h3>In the previous section, we learned how to do optimization by simply going through all the possible solutions and picking the best out of them. We mentioned that this simple 'brute-force' approach may become infeasable when the number of alternatives grows astronomically large. Going further requieres smarter techniques. One of them is called hill climbing.</h3>
+
+The basic idea can be illustrated by the following analogy. Imagine you're wandering in the Nordic forests and enjoying the cleand and wild nature. However, you may want to make a phone call to your friend to let them know you're ok - or perhaps you feel the need to share a beautiful photo on Instagram to get a few new folowwers. In the wild, cell phone coverage can sometimes be limited, so you look for a hilltop where the reception is better. In between the trees, you can't quite see where the highest nearest hill is, but you can always try to walk uphill from where you are, and hope that as long as you keep going up, you'll find a good spot. 
+
+><h4>The hill climning method</h4>
+>
+>The above strategy amounts to what is called the hill climbing method. In optimization terms, your current location would be a specific solution, and the current elevation (measured in meters from the sea level, for example) would be the value of the optimization criterion. The different directions in the forest would correspond to small changes in the current solution.
+
+Obviously, you may not find the highest hilltop, and if you follow this strategy very strictly and allow yourself to only go up, you may well end up on a small bump instead of an actual hill at all. The same goes for the hill climbing technique in optimization: it doesn't guarantee that you find the absolute best solution, just a solution that can't be improved with a small change. THe starting point makes all the difference: if you are fortunate enough to start near the highest peak, you'll probably find it.
+
+To better understand the idea, we'll start by considering a simple scenario involving actual hill climbing. Our fearless hero, the mountaineer Venla Gustafsson, is determined to conquer another mountain. Unfortunately, she has forgotten to take her eyeglasses with her and she can only see as far as her arm can reach. So she just climbs upwards and once she reaches a summit, she stops. Let's see what happens.
+
+![](images/3_1.svg)
+
+You should be able to see taht Venla will reach the nearby summit marked by 'x', which is however, not the highest summit of the mountain. Venla is disappointed but not disheartened. She asks you to take her to a point on the mountain from where she can reach the highest summit by only going upwards.
+
+### exercise03: reach the highest summit
+
+Adjust the slider to mark the region that will ensure that Venla reaches the highest summit. Venla will start at a random position inside the region and climb up to the highest peak there. 
+
+Note: You should drag and resize the slider in order to select the correct answer.
+
+![](images/3_2_1.jpeg)
+
+    The answer is not correct -> Because Venla can only travel upwards (going either left or right), we need to set the boundaries of the zone just above the lowest points on either side of the highest peak.
+
+One problem with the hill climbing method is that we can easily get stuck in a good but not optimal solution. These are called 'local optima' (note: thie plurar form of optimum is optima), whereas the absolute best solution is called the 'global minimum'. (Sometimes there may be several equally good, best solutions, in which case, we should also say global optima).
+
+><h4>Greedy solutions</h4>
+>
+>The simple hill climbing solution where we only go upwards is often said to be a greedy method: it greedily optimizes the short term gain and refuses to incur some temporary loss even if it would lead to bette long-term gain.
+
+Many solutions have been devised to get around this issue. And we really mean, many solutions - hundred of solutions- The field of optimization has become somewhat of a zoo where exotic algorithms roam wild: ant colony algorithms, genetic algorithms, simulated annealing, tabu search, and cuckoo search (we kid you not), just to give a few examples.
+
+><h4>Simulated annealing</h4>
+>
+>One of the simplest and most effective solutions is simulated annealing. It was invented by Scott Kirkpatrick, Daniel Gelatt, and Mario P. Vecchi in 1983 taking inspiration from metallurgy, where cooling a metal object slowly allows its crystal structure to find a minimum energy configuration. THe method is remarkably simple. Instead of only allowing changes that improve the solution (go uphill), some changes that improve the solution (go uphill), some changes that make it worse (go downhill) are also allowed with some probability. The probability of allowing a downwards transition it goes and a so called 'temperature'. The higher the temperature, the higher the probability of allowing a downhill move. The idea is to start at a high temperature so that the changes are more or less random, but to gradually decrease the temperature so that eventually, the probability of going downwards becomes vanishing small.
+
 # Chapter02: Dealing with uncertainty
 
 ## I. Probability fundamentals
