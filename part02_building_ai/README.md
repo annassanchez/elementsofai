@@ -190,6 +190,42 @@ Many solutions have been devised to get around this issue. And we really mean, m
 >
 >One of the simplest and most effective solutions is simulated annealing. It was invented by Scott Kirkpatrick, Daniel Gelatt, and Mario P. Vecchi in 1983 taking inspiration from metallurgy, where cooling a metal object slowly allows its crystal structure to find a minimum energy configuration. THe method is remarkably simple. Instead of only allowing changes that improve the solution (go uphill), some changes that improve the solution (go uphill), some changes that make it worse (go downhill) are also allowed with some probability. The probability of allowing a downwards transition it goes and a so called 'temperature'. The higher the temperature, the higher the probability of allowing a downhill move. The idea is to start at a high temperature so that the changes are more or less random, but to gradually decrease the temperature so that eventually, the probability of going downwards becomes vanishing small.
 
+Let's practice using randomness in Python because we'll need it to implement simulated annealing. The following program prints out the word `dog` with 20% probability.
+
+    import random
+    prob = 0.20
+
+    if random.random() < prob:
+        print('dog')
+
+Why does it print `dog` with 20% probability? The idea is to draw a random value between 0.0 and 1.0 - that's what the function random() in module random does - and to check whether it is less than the required probability value expressed as a decimal number. FOr examle, the probability that the random value falls between 0.5 and 1.0 is 50%. The probability that the value falls also between 0.0 and 0.5 is 50%. The probability that it falls between 0.0 and 0.2 is 20%, and so forth.
+
+Instead of "with 20% probability" we could have said "with probability 0.2". We also tend to use expressions like "in one of five cases" or "tewo out of ten cases". All those mean the same thin. Note that "two in ten cases" doesn't necessarily mean that something will occur in exactly two cases in ten repetitions. Rather, it simply means that in the long run, the frequencu will be two out of ten, which is one way to define probability.
+
+### exercise04: probabilities
+
+We will use probability to make our optimization techniques better by helping them escape local optima. COnsider the following small-scale example. The goal is to have a ball land at the lowest point. marked by B below, on a bumpy surface.
+
+![](images/3_3.svg)
+
+Note that here lower is better, so we are doing the exact opposite of the hill climbing example where the goal was to go up-
+
+The ball is initially in point D, which is a local optimum. Suppose the you can shake the surface to make the ball bounce around. If you shake the surface gently, the ball will be unlikely to escape its initial position D. If you give the surface a single very strong jerk, the ball will bounce randomly and then roll down the hill to a local optimum which may or may not be the global optimum B.
+
+Which of the following shaking strategies you think will most likely succeed in having the ball land at the lowest point B after you stop?
+
+    shaling first strongly and then gradually more gently -> correct! Shaking the surface first strongly and then gradually more gently will most likely succeed. If you start by shaking the surface gently, the ball will unlikely escape the local optimum D. On the other hand, if you shake the surface strongly at the end, the ball will bounce to a random position and the roll down to a local optimum. Starting with strong shaking will first have the ball bouncing randomly but then as you reduce the strength, the lower the position of the ball, the more unlikely it is to bounce over the high "barriers" around the local optima.
+
+The idea to simulated annealing is similar to greedy search in that the optimization proceeds iteratively, gradually moving towards better (higher scoting) solutions. The crucial difference is that in simulated annealing, a new solution may sometimes be accepted even if has lower score than the current solution. This is done by introducing randomness in the acceptance rule: a new solution that has lower score than the current one is accepted with a probability that depends on the difference between the new and the current scores.
+
+><h3>Simulated Annealing: the math</h3>
+>
+>The more math inclined among you may take pleasure in the mathematical details, but even if you don't, the following is doable if you just think of it as a recipe for turning a few numbers into decisions. THe probability of accepting the new solution with score *Snew* when the current solution has score *Sold* is given by the formula:
+> 
+>$prob = exp ( – ( Sold ​– Snew​ )÷ T )$
+>
+>where $T$ is the temperature (remember that the temperature is an abstract concept that ideally starts high and gradually decreases towards zero). The function $exp(x)$ is the exponent function which can also be written mathematically as $e^x$ (the so called Euler's constant $e$ = 2.7128 raised to the power $x$). In Python, the function is found for example in the library `numpy` so you'll have to write `import numpy as np` in your code and refer to the function as `np.exp`. 
+
 # Chapter02: Dealing with uncertainty
 
 ## I. Probability fundamentals
