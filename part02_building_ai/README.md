@@ -226,6 +226,42 @@ The idea to simulated annealing is similar to greedy search in that the optimiza
 >
 >where $T$ is the temperature (remember that the temperature is an abstract concept that ideally starts high and gradually decreases towards zero). The function $exp(x)$ is the exponent function which can also be written mathematically as $e^x$ (the so called Euler's constant $e$ = 2.7128 raised to the power $x$). In Python, the function is found for example in the library `numpy` so you'll have to write `import numpy as np` in your code and refer to the function as `np.exp`. 
 
+### exercise05: warm-up temperature
+
+Let's work with the acceptance probabbility above $exp(-(S_old - S_new) / T)$.
+
+Note: dont' worry about the math, your computer can do the actual calculation - you'll just need t o fill the right numbers.
+
+Suppose our system has a current "score" where $S_old$ has the value of 205 (for ecample, our score could be height in meters if we are literally talking about hill climbing example). The score we want $(S_new)$ should have a value of 196. We have set our temperature T at 5.
+
+Using simulated annealing, there is a possibility for us to accept this new score even if it is not immediately higher in score than the current score.
+
+In this situation, what's the probability we will choose the new score?
+
+Hint: You can calculate these formulas using most web browsers by typing equations in the search bar.
+
+    0.17 -> Correct! You can calculate these formulas using most web browsers by typing the equations in the search bar. So for example, to calculate the acceptance probability when S_old = 205 and S_new = 196, and temperature T=5, you can just copy-paste the text exp(-(205-196)/5) into your browser to get the result that is about 0.16529.You can calculate these formulas using most web browsers by typing the equations in the search bar. So for example, to calculate the acceptance probability when S_old = 154 and S_new = 149, and temperature T=5, you can just copy-paste the text exp(-(154-149)/5) into your browser to get the result that is about 0.3679.
+
+Let's see how this all works in practice. Below is a small widget that you can play with. It shows a randomly generated landscape with multiple local optima (smaller peaks). THe highest peak is marked with a purple flag. The current solution is marked by a white flag. THe height or score of the highest peak and the current solution are also displayed as numbers.
+
+When you clicked the "Start simulated annealing" button at the bottom, the current solution starts moving about. On each step, a new proposed solution is chosen randomly somewhere near the current solution, and it is either accepted or rejected according to the simulated annealing rule. The temperature that determines how often moves are accepted that take the current solution down the hill can be adjusted by using the slider just below the map.
+
+GO ahead and try the widget. When you set the temperature very hich, the search should became just a random walk, wandering around with no aim to go either higher or lower. When you set the temperature to zero, the search should shoot straight up towards a nearby local optimum. Neither seems to take you to the highest peak except perhaps with a fair amount of luck. If you like, you can try and see what strategies help you get to the highest peak: should you start with a low temperature and gradually increase it, or the other way around?
+
+![](images/3_4.jpeg)
+
+### exercise06: simulate annealing
+
+To understood what role temperature plays, it's worthwhile to pause here for a second to think about and answer the following questions:
+
+**What happens when we increase the temperature value to a ricidulously  large number?**
+
+    we accept all new solutions.
+
+**What happens if we set the temperature as close as possible to 0?**
+
+    we only accept the new solutions when they are better than the current one.
+
 # Chapter02: Dealing with uncertainty
 
 ## I. Probability fundamentals
