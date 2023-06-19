@@ -266,6 +266,95 @@ To understood what role temperature plays, it's worthwhile to pause here for a s
 
 ## I. Probability fundamentals
 
+<h4>Many real-world AI applications have to deal with imprecision and uncertainty. When you use your mobile devide to type a message t your friend, your finger will often touch the keys on the screen a little inaccurately.</h4>
+
+Or perhaps you0ve already switched to text to speech: the same applies even more to the audio signal that is captured when you speak. Your voice is never captured exactly the way it was the last time because of changes in backgorund noise, the position of the microphone relative to your mouth, and changes in your own physiological parameters. The data coming from the touch screen or the microphone is imprecise and may contain contradictory elements. The device will therefore not be able to decide with full certainty which key or word you meant: was it an 'A' or an 'S'? Did you say 'cahsew' or 'achoo'?
+
+><h3>The importance of probability</h3>
+>
+>Probability is probably (see how 'meta' - do you love ir too? Oh, never mind) the nest way to deal with uncertainty. This is why probability is also the solid foundation underlying most of statistics. you may not have thought about it, but to explore the probability, programming is a particularly fun and useful tool. It is quite easy to do simple experimnets involving probability using computer simulation. Yet another reason to learn how to program: it's actually helpful when learning to better understand probability.
+
+WE won't be going any further into probability than the basics, but if you fell that you need to go slow and refresh your memory, we recommend that you look into Chapter 3 of the [Introduction to AI](https://course.elementsofai.com/3). ALtirnatively, or in addition, you may also enjoy [Khan Academy videos on probability](https://youtu.be/xSc4oLA9e8o) (they have a whole series) or *The Art od Statistics: Learning from Data* (see especially Chapter 8) by [David Spiegelhalter](http://www.statslab.cam.ac.uk/~david/), which we found to be very accesible and informative.
+
+Our first exeercise will involve coin flipping. Coin flipping is a classic example of a situation where if we repeat the trial (the coin flip), the subsequent trials are independent (the results of given coinflip don't depend on a previous result) - which means we can multiply the probabilities of the individual events.
+
+### exercise07: flip the coin
+
+When flipping a coin, you have two possible outputs – heads and tails.
+
+What is the probability of getting two consecutive tails when tossing a coin?
+
+    0.5 * 0.5 = 0.25
+
+What is the probability of getting four consecutive heads when tossing a coin?
+
+    0.5 * 0.5 * 0.5 * 0.5 = 0.0625
+
+><h3>The Monte Carlo method</h3>
+>
+>THe previous coding exercise - feel free to take a look at it even if you prefer the beginner exercises - demonstrates the so-called Monte Carlo method: simulating random data and estimating probabilities by counting occurrences. While simplistic, it is often remarkably useful. Sometiems it is the best way to avoid spending an eternity doing complex math.
+
+Our motivation for discussing probability is not just to understand coin flipping or other games. We'll be using probability for reasoning - to infer one thing from another. This is based on *conditional probability*. COnditional probability is actually a pretty simple concept. We'll give a very brief recap here, but if you feel that you need to go slow and let it sink in, we recommned that you look into Chapter 3 of the [Introduction to AI](https://course.elementsofai.com/3) again. There's a relevant video of [Khan Academy](https://www.khanacademy.org/math/statistics-probability/probability-library/conditional-probability-independence/v/calculating-conditional-probability) as well. 
+
+![](images/4_1.svg)
+
+Let's start with a concrete example. According to recen OECD statistics, there are 2652 professional fishers (though not officially recognized, we're going to use this term as an alternative to fisherman/fisherwoman/fisherperson) employed in the fishing industry in FInland - the most "recent" statistics are from 2013 but this isn't important for the point being made. The total population of Finland in 2013 was 5439000, so fishing employed only about 0.049 percent, or fewer than one in 2000 Finns. Meanwhile, in Norway the number of fishers was 11,611 out of the total population 5080000, which makes about 0.229 percent, about one in 438 Norwegians. The following table contains the digures for all of the Nordiv countries:
+
+| Country |	Population	| Fishers	| Proportion of fishers |
+| - | - | - | - |
+| Denmark |	5,615,000 |	1,891 |	0.034% |
+| Finland	| 5,439,000 |	2,652	| 0.049% |
+| Iceland |	324,000 |	3,800  |	1.173% |
+| Norway |	5,080,000 |	11,611 |	0.229% |
+| Sweden |	9,609,000 |	1,757 |	0.018% |
+| TOTAL |	26,067,000 |	21,711 |	0.083% |
+
+This looks quite unsurprising for anyone familiar with the natural resources and traditional structure of the Nordic countries. Denmark, Finland and Sweden are relatively large countries with plenty of forests and a strong agricultural past, whereas Norway and especially Iceland rely more on the bounty of the sea. Hence a higher number of people that work in the fishing industry (both in absolute numbers and even more percentages) live in these two countries.
+
+Returning to the topic of probability, let0s imagine that we could run a lottery where we randomly choose any citizen in the Nordic countries. Since Sweden has a way bigger population than Iceland, it would be more likely that the winner is a Swede rather than an Icelander. The probability of choosing a person in a specific country can be calculated by dividing the population of the country by the total population of the Nordic countries, 26067000.
+
+The probability of the winner being from each country is as follows:
+
+| Country |	Probability of choosing a winner |
+| - | - |
+| Denmark |	21.5% |
+| Finland |	20.9% |
+| Iceland |	1.2% |
+| Norway |	19.5% |
+| Sweden |	36.9% |
+
+These kinds of calculations are something w can very well do without writing math formulas, but in case we wanted to express the above calculations as a formula, it would be:
+
+>$P(country) = population(country) / totalpopulation$
+
+The meaning of this is that $P(country)$ is the probability (hence the letter $P$) that the winner is in a specific country (for example, Denmark), and $population(country)$ is the number of inhabitnats in that country. THe denominator (the thing you divide by) is the total population, in this case 26067000. In the above table, we have converted "raw" numerical values like 0.2154065 to percentages with one decimal place, such as 21.5%.
+
+WHat if we were told that the winner has been chosen and that he or she turns out to be a fisher? The chances of the winner being from a specific country can now be calculated by dividing the number of fishers in the country by the total numfer of fishers in all of the aboce countries, which is 21711. The probabilities of the winner being a citizen of a certain country, given that the winner makes their living in finishing, look quite different from the probabilities of the winner makes their living fishing, look quite different from the probabilities of the winner being a citizen of the same country without specifying whether thwy are a fisher or not:
+
+| Country |	Probability of choosing a winner |
+| - | - |
+| Denmark	| 8.7% |
+| Finland	| 12.2% |
+| Iceland |	17.5% |
+| Norway |	53.5% |
+| Sweden |	8.1% |
+
+These are the conditional probabilities of the winner from each country given that the winner is a fisher. The expression has the form "probability of X given Y" where X and Y are specific events. For example:
+
+> $P(Denmark|fisher) = fishers(Denmark) / fishers(total)$
+
+which equals 0.08709871 - we round this and express it as a percentage: 8.7%.
+
+So to summarize, what the above example demonstrates is the use od conditional probability to update our beliefs about the nationality of the lottery winner. Before learning that the winner is a fisher, the most likely nationality was Swedish, based o nthe fact that Sweden has the largest population among the Nordic countries. After learnign that the winer is a fisher, the most likely nationality is Norwegian.
+
+The benefits of using probability to represent uncertaint carry over to more complex scenarios where may learn multiple pieces of information, like for instance if the winner is male or female, or their age. These would allow us to further refine and update our beliefs about the nationality as well as other properties of the winner.
+
+### example08: fishing in the nordics
+
+What is the probability that the winner is a fisher given that they are Norwegian? Be mindful of the innocent sounding distinction between the probability of X given Y and the probability of Y given X.
+
+    0.229%
+
 ## II. The Bayes Rule
 
 ## III. Naive Bayes classifier
