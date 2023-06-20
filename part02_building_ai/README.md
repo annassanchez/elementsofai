@@ -357,6 +357,54 @@ What is the probability that the winner is a fisher given that they are Norwegia
 
 ## II. The Bayes Rule
 
+<h4>In the previous section, we used conditional probability to make inferences about something we didn't know based on a specific piece of information. To recap, what we didn't know was the nationality of the lottery winner and the piece of information that we made use of was the fact that the winner was a fisher.</h4>
+
+There is a specific way to calculate such conditional probabilities that is particularly useful in many applications, namely the Bayes rule. The often-used formula for the Bayes rule is:
+
+>$P(A|B) = \dfrac{P(B|A)P(A)}{P(B)}$
+
+If we use specific events in place of $A$ and $B$, we got for example:
+
+>$P(Denmark|fisher) = \dfrac{P(fisher|Denmark)P(Denmark)}{P(fisher)}$
+
+$P(Denmark|fisher)$ stands for the probability of a person being Danish, given that they are a fisher. To calculate it, we now need numerical values for the three quantities on the right, namely $P(fisher|Denmark)$, $P(Denmark)$ and $P(fisher)$.
+
+THe first term is the probability that a random person is a fisher given that they live in Denmark. This we calculated in the previous section to be about $0.034\%$. The second term is the probability that a random person lives in Denmark, considering the Nordic countries only at this time, which we also have already calculated and found to be about $21.5\%$.
+
+The third and the last term that we need is the only one that maye sometimes require a bit of work to figure out. Here it is quite straightforward to calculate by adding up the number of fishers in all five countries, which gives $21.711$, and dividing this by the total population of the said countries, $26.067.000$. THis too we have already calculated and it can be found in the first table of the previous section: about $0.083\%$.
+
+For the calculations, we'll write the probabilities as plain decimal numbers instead of percentages (just dive each percentade by 100) so here's the formula with the abobe numbers substitued in the correct places:
+
+>$P(Denmark|fisher) = \dfrac {0.00034 x 0.215}{0.00083} = 0.088$
+
+(rounded to three decimal places) or $8.8\%$. Recall that we already knew the result since we hac calculated without the Bayes rule above. (If you have an eye for details, you may have noticed that the result was $8.7\%$ earlier. THis is caused by rounding errors - had we used a more accurate value for the proportion of fishers in Denmark than $0.00034$, we would have gotten the same result, $8.7\%$. This ilustrates the importance of using a sufficient number of digits especially for small numbers. With computers, it's much easier to maintain high precision since we don't have to actually write down the numbers, although there are cases where floating point rounding errors become problematic as well).
+
+The good news is that we got the right result, but you are probably wondering why on Earth we went to the trouble of using the Bayes rule since there was a direct way to reach the same result? The answer is that we wanted to illustrate the use of the Bayes rule so that we could use it later in other cases. It is often the case that we know three terms on the right side of the Bayes rule but we don't know the terms required on the right side of the Bayes rule but we don't know the term required for the direct calculation. Typical  cases like this include medical diagnosis (see for instance the breast cancer screening example in the [Introduction to AI](https://course.elementsofai.com/3/2)) and other scenarios where we know the probability of the effect (test result) given its cause (a medical condition), but not the other way around.
+
+![](images/5_1.svg)
+
+### exercise09: block or not
+
+Let's suppose you have a social media account on Instagram, Twitter, or some other platform (just in case you don't, it doesn't matter. We'll fill you in with the relevant information). You check your account and notice that you have a new follower – this means that another user has decided to start following you to see things that you post. You don't recognize the person, and their username (or "handle" as it's called) is a little strange: John37330190. You don't want to have creepy bots following you, so you wonder whether to block them. To decide whether you should block the new follower, you decide to use the Bayes rule!
+
+Let's assume that 5% of your new followers are bots: this can be written as
+
+$P(bot) = 0.05.$
+
+Let's also assume that 80% of bot accounts have a username that includes an 8-digit number (like 37330190):
+
+$P(8-digits | bot) = 0.8$
+
+The last term that is required is the probability that a new follower (either a bot or not) has an 8-digit number in their username. Assume this to be:
+
+$P(8-digits) = 0.041.$
+
+Calculate the probability that the new follower is a bot, P(bot | 8-digit), using the Bayes rule: P(A | B) = P(B | A)P(A)/P(B). The values of the three terms that are needed are found above. Choose the right answer (rounded up to one decimal digit):
+
+    $97.5\%$ - probability 0.976
+
+We'll demonstrate another example use case for the Bayes rule in the next section, namely document classification, using the classic example of a spam filter. 
+
 ## III. Naive Bayes classifier
 
 # Chapter03: Machine Learning
