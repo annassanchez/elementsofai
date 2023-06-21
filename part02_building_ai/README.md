@@ -407,6 +407,62 @@ We'll demonstrate another example use case for the Bayes rule in the next sectio
 
 ## III. Naive Bayes classifier
 
+One of the most useful applications of the Bayes rule is the so-called Naive Bayes classifier. It is a machine learning technique that can be used to classify objects such as text documents into two or more classes. The classifier is trained by analyzing a set of training data for which the correct classes are given. We cover this in an [Introduction to AI](https://course.elementsofai.com/4/1) and will return to these concepts in this course in [Chapter 04](https://buildingai.elementsofai.com/Neural-Networks). For now, all you need to focus on is that the basic idea is to use the Bayes rule to calculate the probability.
+
+>$P(spam|words)=\dfrac{P(words|spam)P(spam)}{P(words)}$
+
+This is the probability of a message being spam given the words it contains. If this probability is high, then the filter may automatically delete the message or put it into a junk mail folder.
+
+The idea is to use a large collection of spam messages to estimate the frequency of each word in them, which can be used as $P(words|spam)$. The same is done for non-spam messages, which is often called "ham", to estimate $P(words|ham)$. As you may notice, the Bayes rule formula above doesn't really include the latter term, but it is needed to calculate $P(words)$, which refers to the word frequencies in all messages (either ham or spam)
+
+><h3>What do we mean by naive?</h3>
+>
+>![](images/6_1.svg)
+>
+>The reason why the Naive Bayes classifier is called 'naive' has to do with processing each word in the message independently and ignoring their order. So according to the Naive Bayes model, a message with the content 'dog bit man' is not different than 'man bit dog'. This way of ignoring the word order is often called a 'bag of words' approach, and we'll return to this issue later in the course.
+
+Processing the words independently leads to a nice procedure where the Bayes rule is applied repeatedly to update the probability each time a new word is received. THe procedure is explained in the [Introduction to AI](https://course.elementsofai.com/3/3), so we'll just skip to the resulting algoritihm, which is as follows:
+
+1. start with the odds 1 : 1, which means that the probability of spam is 0.5.
+2. calculate the so called likelihood ratio as $r = \dfrac{P(word|spam)}{P(word|ham)}$
+3. multiply the current odds by $r$.
+4. repeat steps 2 and 3 until all words have been processed.
+
+**Note**: we are using odds instead of probabilities here because it simplifies the procedure significantly. THe relationship between odds and probabilities is explained in the [Introduction to AI](https://course.elementsofai.com/3/1).
+
+To give a simple artificial example, suppose the message is just two words: 'million conferences'. We need the frequencies of the words can easily be estimated from a collection of both kinds of messages. Let's suppose the frequencies have been estimated as follows:
+
+| |	spam |	ham |
+| - | - | - |
+| million	| 0.0016285 |	0.0003198 |
+| conferences |	0.0000100 |	0.0000391 |
+
+The ratios calculated in step 2 of the algorithm are then (rounded to four decimal places):
+
+>$\dfrac{P(milion|spam)}{P(million|gam) = \dfrac{0.0016285}{0.0003198}} = 5.0923$
+
+>$\dfrac{P(conferences|spam)}{P(conferences|gam) = \dfrac{0.0000100}{0.0000391}} = 0.2554$
+
+When the odds 1 : 1 is multiplied by the first one, it becomes 5.0923 : 1. This means that given just the world 'million', the probability that the message is spam is about five times as high as the probability that it's ham: the message looks to be spam but may well turn out to be ham after all. With the second word 'conferences', the oods are multiplied by 0.2554 so it becomes $(0.2554 x 5.0923) : 1 = 1.30 : 1$. Now the chances are almost equal that the message is either spam or ham.
+
+Recall that you can get probability values from odds by using the following simple formula:
+
+>$if odds = x : y, then probability = \dfrac{x}{(x+y)}$
+
+For example, the odds $130 : 1$ makes the probability $\dfrac{1.30}{(1.30 + 1)} = 0.565$ (with three decimal places). Or if you think that percentages are nicer, $56.5\%$.
+
+### exercise10: naive bayes classifer
+
+We have two dice in our desk drawer. One is a normal, plain die with six sides. Each of the sides comes up with an equal 1/6 probability. The other one is a loaded die that also has six sides, but that however gives the outcome six on every second try on average. That means the probability that you get a six is 16.7% with the first die but 50% with the second die.
+
+Suppose that we pick one of the dice at random so that both have the same chances of being picked, then start rolling the same die again and again. If the outcome is six on the first roll, you wouldn't be very sure it's the loaded die. If the outcome is also six on the second roll, you'd start thinking it probably is. After the third six, you'd start to be quite convinced.
+
+If the outcome keeps being six, how many rolls would it take altogether (counting from the start) until the odds are at least 100:1 in favor of the loaded die?
+
+Tip: use the likelihood ratio (r) discussed above. In this case, r = P(6 | loaded) / P(6 | normal).
+
+    5 -> The likelihood ratio is r = P(6 | loaded) / P(6 | normal) = (1/2) / (1/6) = 3. If we start with the odds 1:1, the sequence of odds after each roll with the outcome 6 are as follows: 3:1, 9:1, 27:1, 81:1, 243:1, ... The fifth one is the first that is 100:1 or higher, so it takes five rolls with the outcome 6 to reach 100:1.
+
 # Chapter03: Machine Learning
 
 ## I. Linear Regression
