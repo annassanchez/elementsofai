@@ -467,6 +467,52 @@ Tip: use the likelihood ratio (r) discussed above. In this case, r = P(6 | loade
 
 ## I. Linear Regression
 
+According to a popular quip taht circulates on Twitter:
+
+- When fundraising: is AI.
+
+- When recruiting: is machine learning.
+
+- When implementing: is linearregression.
+
+In fact, we think that the reason why this not-exactly-killing-you-with-laughter kind of a joke has become so popular is taht there is an element of truth in it. It is only sensible to use a more general term, such as AI, when giving an elevator pitch to a potential investor. It is wise to use a more specific term when recruiting to get experts in the right area, andin most of today's AI business, the subarea of AI that is most relevant is machine learning. And in surprisingly many practical applications of machine learning, linear regression with the right data is an extremely powerful technique.
+
+### The types of machine learning
+
+Before we jump into the tipic of machine learning and linear regressiom we should quickly review the types of machine learning.
+
+#### Supervised learning
+
+In supervised learning you know what the answer is, and you try to generate a model with correct answers. For example: you have aparment price data where you know at which price apartments have been sold and some properties of the apartments, like size in square meters, the number of floors, etc. Your model would use these properties to predict the price of an apartment.
+
+A supervised learning problem can be for example a classification problem (I have photos of dogs, cats and parrots and I want to build a model to detect if the animal in a given picture is a dog, cat or parrot), or a regression problem (I have historical data on my class showing how many hours each student studied for the exam and what grade they got, and I want to model this relationship).
+
+#### Unsupervised learning
+
+In an unsupervised learning setting there is no answer, at lear not one you know of. Your model tries to find structure in your data, or generate representations of your data. FOr example, you have a video streaming service, and you have user data showing what videos your users have watched. You can then use this data to group your videos or users based on their profiles. The key point here is there is no ground truth for these groupings supplied by you. It might be true that there in fact is no ground truth for these groupings supplied by you. It mught be true that there in fact are only three types of viewers in your system, but when your problem is an unsupervised problem, it means you do now know this beforehand.
+
+Another example would be to group your video service streaming users into different clusters based on their behavior to get some insight into your user base: you could try to find different types of profiles that could benefit from different kinds of service.
+
+#### Reinforcement learning
+
+Reinforcement learning is probably the closest to what most people think of (in broad terms) when it comes to artificial intelligence. In reinforcement learning you have "agents" that operate in an inviroment in a way that maximizes som kind of reward. An example of an agent would be software that controls your player character in a famous 2d side scrolling platform game. The reward is defined as the final score when passing a level. The agent is then trying to formulate rules dor its behavior that maximize its score: this might include behavior that seeks to pick up score increasing power ups and avoiding hitting enemies and so on.
+
+A more recen example of a reinforcement learning set up is DeepMind's Alpha Go and its varaitions, which is a reinforcement learnign system that can play the board game Go and has surpassed the ebst human players in skill.
+
+Now with that review out of the way, let's return to linear regression:
+
+><h3>Linear regression</h3>
+>
+>The idea of linear regression is explained in [Introduction to AI](https://course.elementsofai.com/4/3). We will again assume you know the basic idea already. If not, you can take a look at the material in the Introduction to AI. Here we will only give a condensed refresher.
+
+The general problem for which linear regression is one solution among many, is regression. The task is to predict a numerical value given a set of input values. For example, to predict the price of a mökki (a Finnish cabin) based on different features such as the size in square meters, the distance to the nearest neighbours, the condition (measured on some numerical scale), and so on.
+
+>We will use the term input or feature for the data that are used to obtain the prediction, and we use the term output or response dor the thing to be predicted. For example, the size of the cabin is a feature (or an input), and the price is the output (or the response). Usually, we have some data that contains both te input values as well as the response, and our goal is to adjust the model so that its output matches the actual response values as well as possible.
+
+In linear regression, the prediction is calculated using a linear model where each increment of a feature that is variable by some fized amount increases or decreases the predicted output by the same amount. This amount can be different for each feature. So for example, if the predicted price of a cabin is €400,000, then all other things being equal, each one meter increment in the size will increase the predicted price by the same amount, say, €4000; and therefore, a two square meter increment will increase the price by €8000, a three square meter incremente by €12000, and so on.
+
+The same goes dor the number of indoor toilets, meaning there is a certain amount, say €2000, by which the predicted price increases for each toilet. THe opposite is also true for coefficients which are negative: for example in our case of cabins, the shorter the distance fro mthe cabin to a body of water (say, a lake), the higher the price of the cabin. With a negative coefficient for that variable, each added meter of distance fro mthe cabin to the body of water lowers the price by a fixed amount.
+
 ## II. The nearest neighbor method
 
 ## III. Working with text
