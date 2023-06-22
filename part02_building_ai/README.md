@@ -513,6 +513,65 @@ In linear regression, the prediction is calculated using a linear model where ea
 
 The same goes dor the number of indoor toilets, meaning there is a certain amount, say €2000, by which the predicted price increases for each toilet. THe opposite is also true for coefficients which are negative: for example in our case of cabins, the shorter the distance fro mthe cabin to a body of water (say, a lake), the higher the price of the cabin. With a negative coefficient for that variable, each added meter of distance fro mthe cabin to the body of water lowers the price by a fixed amount.
 
+>The cabin price model is a good example of the fact that the linear regression model is not necessarily a very good model. It is clear that the change in the price that comes from being closer to water is likely to be different for cabins of different sizes. THe linear regression model is not able to capture this without special tricks. One such trick would be to change the predicted variable to be the price per square meter. If the price per square meter increases as you get closer to water, the total price of larger cabins would increase than that of small cabins.
+
+The formula used in linear regression in an example case with three variables and three coefficients has the form $c_1 \times x_1 + c_2 \times x_2 + c_3 \times x_3$, where are three coefficients $c_1$, $c_2$, and $c_3$ that corresponds to the three input $x_1$, $x_2$, and $x_3$. The increase in the prediction resulting from increasing one of the inputs by one unit (for example, one square meter) is given by the corresponding coefficient. The number of inputs doesn't have to be three, of course, but the number of coefficients is always the same as tbe number of inputs. Often we include a so-called intercept term in the model too, in which case it becomes like this:
+
+>$a_1 + c_1 \times x_1 + c_2 \times x_2 + c_3 \times x_3$
+
+where "a" is the intercept term.
+
+THe purpose of the intercept term is to make it possible to increment (or reduce if the intercept value is negative) the predicted values by a constant amount independently of the inputs.
+
+Below you will find a simple program that produces predictions about cabin prices. (Disclaimer: The program is meant for demonstration purposes only. Don't blame us if you lose money trusting it's predictions!) You can modify the input values to get predictions for different cabins.
+
+The cabin details, namely size ($66 m^2$), size of the sauna ($5 m^2$), distance to water ($15 m$), number of indoor toilets (2) and the proximity of the nearest neighbour ($500 m$), are specified as the elements of the list $x$. The corresponding coefficients are specified in the list $c$. The elements of the list $x$ are the inputss $x_1$, ..., $x_5$, while the elements of $c$ are the coefficients $c_1$, ..., $c_5$. Note that in the example we don't use the intercept item.
+
+``` python
+# input values for one mökkis: size, size of sauna, distance to water, number of indoor bathrooms, 
+# proximity of neighbours
+
+x = [66, 5, 15, 2, 500]
+c = [3000, 200 , -50, 5000, 100]     # coefficient values
+
+prediction = c[0]*x[0] + c[1]*x[1] + c[2]*x[2] + c[3]*x[3] + c[4]*x[4]
+
+print(prediction)
+```
+
+```
+258250
+```
+
+As you see, the predicted price is $€258,250$. Fell free to play around with the code. You won't break anything and you can always reset the code to its original state to start again.
+
+### exercise11: real estate price predictions
+``` python
+# input values for one mökkis: size, size of sauna, distance to water, number of indoor bathrooms, 
+# proximity of neighbours
+
+x = [66, 5, 15, 2, 500]
+c = [3000, 200 , -50, 5000, 100]     # coefficient values
+
+prediction = c[0]*x[0] + c[1]*x[1] + c[2]*x[2] + c[3]*x[3] + c[4]*x[4]
+
+print(prediction)
+```
+
+You can use the above piece of code to calculate these, or use pen and paper.
+
+What would the predicted price of a cabin be with the following details? Size: 85 m2, size of the sauna: 10m2, distance to a lake: 15m, number of indoor toilets: 1, distance to next door neighbor: 100m
+
+    271250 €
+
+What would the predicted price of a cabin be with the following details? Size: 155m2, size of the sauna: 15m2, distance to a lake: 5m, number of indoor toilets: 1, distance to next door neighbor: 200m.
+
+    492750 €
+
+Which increases the price of a cabin more? 
+
+    Being 10 m closer to a lake and having an extra indoor toilet changes the price by –50 × (–10) + 1 × 5000 = 5500 eur, while being 10 m² larger and having a neighbour 100 m further away changes the price by 10 × 3000 + 100 × 100 = 40000 eur.
+
 ## II. The nearest neighbor method
 
 ## III. Working with text
