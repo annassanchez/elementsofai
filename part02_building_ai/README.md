@@ -572,6 +572,50 @@ Which increases the price of a cabin more?
 
     Being 10 m closer to a lake and having an extra indoor toilet changes the price by –50 × (–10) + 1 × 5000 = 5500 eur, while being 10 m² larger and having a neighbour 100 m further away changes the price by 10 × 3000 + 100 × 100 = 40000 eur.
 
+
+The cumpersome sum $c[0]*x[0] + c[1]*x[1] + c[2]*x[2] + c[3]*x[3] + c[4]*x[4]$ can easily be replaced by a for loop. However, there are even more elegant ways to do this using the numerical computation package `numpy`.
+
+``` python
+import numpy as np
+
+x = np.array([66, 5, 15, 2, 500])
+c = np.array([3000, 200 , -50, 5000, 100])
+
+print(x @ c)
+
+```
+The solution works for any number of inputs. The `@` operator does the same job as the function called `np.dot(x, c)`. The function name `dot` coems from the fact in linear algebra, the mathematical operation of multiplying together the respective elements and adding them up is called a "dot product".
+
+The beauty of linear algebra - which is basically the art of operating with `arrays` (or vectors and matrices as they called in mathematics) - shows wvwn better when we apply the above calculations on multiple cases in one go. So instead of editing the program each time to update the data to process the next cabin, and re-running to get the predictions one at a time, we can collect multiple cases in a two-dimensional array and see what happens.
+
+``` python
+import numpy as np
+
+x = np.array([[66, 5, 15, 2, 500], 
+              [21, 3, 50, 1, 100]])
+c = np.array([3000, 200 , -50, 5000, 100])
+
+print(np.dot(x, c))
+```
+
+It works! Nice. Notice the double brackets in the row where the inputs are assigned to variable `x`. The `array` is constructed from a list of lists where each of the two lists contains the five input values for one cabin. The `numpy array` then becomes two-dimensional with each row corresponding to a cabin and each column to an input (for example, the size ins square meters, which is the first column).
+
+So far we have used straightforward calculatiosn to obtain price estimates, but that is actually not the most impressive thing you can do with linear regression. THings get interesting then we flip things around. Suppose we know the inputs (the features of the cabin) and the outputs (the final prices), and we'd like to know how each of the features affects the price. In other words, we'd like to estimate the coefficients from data containing the inputs and the output number of cabins.
+
+We can hardly ever find coefficients that make the model perfectly predict the outputs in the data because the actual prices also depend on numerous other factors than the ones included in out model as features (size, size of sauna and so on). SO two cabins with exactly the same features may end up being sold for different prices. Or it may happen that even though the size of the normally has a positive dependnece (larger means higher price), sometimes a larger mökki is more affordable than a smaller one even if the other features are fixed.
+
+>There are various reasons why models don't generally perfectly capture the underlying phenomenon. THese include noise (random, unsystematic disturbances), confounding variables (features that are associated with both the inputs and the outputs), selection bias (some data points are more likely to end up in the data used to build the model than others), and so on. THis means that you should always be critical about the model and its predictions. This requires understanding the context in whihc the model is used and the possible biases in the data.
+
+Estimating the parameters in linear regression is one of the classical problems in statistics and machine learning, and the most classical solution to this classical problem is the so-called least squares method proposed by Legendre and Gauss inthe beginning of the 1800s. Clearly the term machine learning wasn't used then but it is not unusual that new fields (like machine learning and AI) adopt methodology from existing fields (like statistics).
+
+The reason why the method is called least squares is what what it does is to optimize the coefficients so as to minimize the squared differences between the outputs of the model and the observed response values. We calculate the difference between the predicted and observed output values for each of the items in the data, take the square - remember that $x \times x = x^2$ is called the square of $x$ - and add the squares up. The coefficients are chosen so that this sum of squares is the least possible: hence, method of least squares. The least squares method solves this problem exactly and efficiently. Technically, this involves some matrix algebra and we won't go into the details. Fortunately, there are plenty of Python packages that have ready-made implementations of it-
+
+Below is a widget that visualizes how least-squares works. Try generating random datasets, and predicting what the least squares line will be (guided by minimiizing the predicted error). How close can you get to the least squares fit?
+
+Tip: When generating datasets below, you'll notice that some points are very scattered. But least squares still tries to model them as a line. This is a good indicator to figure out on which datasets to apply a libnear model like least squares, and on which datasets it doesn't make sense!
+
+![](images/7_1.jpeg)
+
 ## II. The nearest neighbor method
 
 ## III. Working with text
